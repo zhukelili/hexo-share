@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>k8s集群nginx应用实例 | zhukelili-blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="目标：将集群中的nginx服务通过暴露端口号的方式被集群外客户端访问Support Versions table   Ingress-NGINX version k8s supported version Alpine Version Nginx Version    v1.1.1 1.23, 1.22, 1.21, 1.20, 1.19 3.14.2 1.19.9†   v1.1.0 1.22,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="k8s集群nginx应用实例">
+<meta property="og:url" content="http://114.115.216.198/2022/06/14/k8s%E9%9B%86%E7%BE%A4nginx%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/index.html">
+<meta property="og:site_name" content="zhukelili-blog">
+<meta property="og:description" content="目标：将集群中的nginx服务通过暴露端口号的方式被集群外客户端访问Support Versions table   Ingress-NGINX version k8s supported version Alpine Version Nginx Version    v1.1.1 1.23, 1.22, 1.21, 1.20, 1.19 3.14.2 1.19.9†   v1.1.0 1.22,">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-06-14T15:00:12.000Z">
+<meta property="article:modified_time" content="2022-06-15T13:24:54.383Z">
+<meta property="article:author" content="zhukelili">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="zhukelili-blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">zhukelili-blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">有想法 有目标 有方法 有工作 有生活 有变化</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://114.115.216.198"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-k8s集群nginx应用实例" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/14/k8s%E9%9B%86%E7%BE%A4nginx%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/" class="article-date">
+  <time class="dt-published" datetime="2022-06-14T15:00:12.000Z" itemprop="datePublished">2022-06-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      k8s集群nginx应用实例
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="目标：将集群中的nginx服务通过暴露端口号的方式被集群外客户端访问"><a href="#目标：将集群中的nginx服务通过暴露端口号的方式被集群外客户端访问" class="headerlink" title="目标：将集群中的nginx服务通过暴露端口号的方式被集群外客户端访问"></a>目标：将集群中的nginx服务通过暴露端口号的方式被集群外客户端访问</h2><h3 id="Support-Versions-table"><a href="#Support-Versions-table" class="headerlink" title="Support Versions table"></a><a target="_blank" rel="noopener" href="https://github.com/kubernetes/ingress-nginx">Support Versions table</a></h3><table>
+<thead>
+<tr>
+<th>Ingress-NGINX version</th>
+<th>k8s supported version</th>
+<th>Alpine Version</th>
+<th>Nginx Version</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>v1.1.1</td>
+<td>1.23, 1.22, 1.21, 1.20, 1.19</td>
+<td>3.14.2</td>
+<td>1.19.9†</td>
+</tr>
+<tr>
+<td>v1.1.0</td>
+<td>1.22, 1.21, 1.20, 1.19</td>
+<td>3.14.2</td>
+<td>1.19.9†</td>
+</tr>
+<tr>
+<td>v1.0.5</td>
+<td>1.22, 1.21, 1.20, 1.19</td>
+<td>3.14.2</td>
+<td>1.19.9†</td>
+</tr>
+<tr>
+<td>v1.0.4</td>
+<td>1.22, 1.21, 1.20, 1.19</td>
+<td>3.14.2</td>
+<td>1.19.9†</td>
+</tr>
+<tr>
+<td>v1.0.3</td>
+<td>1.22, 1.21, 1.20, 1.19</td>
+<td>3.14.2</td>
+<td>1.19.9†</td>
+</tr>
+<tr>
+<td>v1.0.2</td>
+<td>1.22, 1.21, 1.20, 1.19</td>
+<td>3.14.2</td>
+<td>1.19.9†</td>
+</tr>
+<tr>
+<td>v1.0.1</td>
+<td>1.22, 1.21, 1.20, 1.19</td>
+<td>3.14.2</td>
+<td>1.19.9†</td>
+</tr>
+<tr>
+<td>v1.0.0</td>
+<td>1.22, 1.21, 1.20, 1.19</td>
+<td>3.13.5</td>
+<td>1.20.1</td>
+</tr>
+<tr>
+<td>v0.50.0</td>
+<td>1.21, 1.20, 1.19</td>
+<td>3.14.2</td>
+<td>1.19.9†</td>
+</tr>
+<tr>
+<td>v0.49.3</td>
+<td>1.21, 1.20, 1.19</td>
+<td>3.14.2</td>
+<td>1.19.9†</td>
+</tr>
+<tr>
+<td>v0.49.2</td>
+<td>1.21, 1.20, 1.19</td>
+<td>3.14.2</td>
+<td>1.19.9†</td>
+</tr>
+<tr>
+<td>v0.49.1</td>
+<td>1.21, 1.20, 1.19</td>
+<td>3.14.2</td>
+<td>1.19.9†</td>
+</tr>
+<tr>
+<td>v0.49.0</td>
+<td>1.21, 1.20, 1.19</td>
+<td>3.13.5</td>
+<td>1.20.1</td>
+</tr>
+<tr>
+<td>v0.48.1</td>
+<td>1.21, 1.20, 1.19</td>
+<td>3.13.5</td>
+<td>1.20.1</td>
+</tr>
+<tr>
+<td>v0.47.0</td>
+<td>1.21, 1.20, 1.19</td>
+<td>3.13.5</td>
+<td>1.20.1</td>
+</tr>
+</tbody></table>
+<h2 id="下载ingress-nginx的yaml文件"><a href="#下载ingress-nginx的yaml文件" class="headerlink" title="下载ingress-nginx的yaml文件"></a>下载ingress-nginx的yaml文件</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Kubernetes v1.19.16、nginx:1.19.9</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">默认使用国外镜像，会导致拉取镜像失败，所以必须使用有效的国内镜像</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">【image: anjia0532/google-containers.ingress-nginx.controller:v1.1.1】</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">【image: anjia0532/google-containers.ingress-nginx.kube-webhook-certgen:v1.1.1】</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">下载用于ingress-nginx部署的yaml文件</span></span><br><span class="line">https://github.com/kubernetes/ingress-nginx/tree/main/deploy/static/provider/cloud/1.19/deploy.yaml</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">重命名</span></span><br><span class="line">mv deploy.yaml cloud-1.19-deploy.yml</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">下载通过端口暴露集群服务的yaml文件</span></span><br><span class="line">https://github.com/kubernetes/ingress-nginx/blob/main/deploy/static/provider/baremetal/1.19/deploy.yaml</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">重命名</span></span><br><span class="line">mv deploy.yaml baremetal-1.19-deploy.yaml</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">确认上面两个yaml文件都修改为有效的国内的镜像</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="部署ingress-nginx"><a href="#部署ingress-nginx" class="headerlink" title="部署ingress-nginx"></a>部署ingress-nginx</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">kubectl apply -f cloud-1.19-deploy.yaml</span><br><span class="line">[root@k8s-master ingress-nginx]# kubectl get pods -n ingress-nginx -o wide</span><br><span class="line">NAME                                       READY   STATUS      RESTARTS   AGE   IP           NODE        NOMINATED NODE   READINESS GATES</span><br><span class="line">ingress-nginx-admission-create-qdfmg       0/1     Completed   0          19s   10.244.1.2   k8s-node2   &lt;none&gt;           &lt;none&gt;</span><br><span class="line">ingress-nginx-admission-patch-28cgd        0/1     Completed   0          19s   10.244.1.3   k8s-node2   &lt;none&gt;           &lt;none&gt;</span><br><span class="line">ingress-nginx-controller-c89bcb69b-htf9p   1/1     Running     0          19s   10.244.1.4   k8s-node2   &lt;none&gt;           &lt;none</span><br></pre></td></tr></table></figure>
+
+<h2 id="通过ingress-nginx将集群中的服务暴露出来"><a href="#通过ingress-nginx将集群中的服务暴露出来" class="headerlink" title="通过ingress-nginx将集群中的服务暴露出来"></a>通过ingress-nginx将集群中的服务暴露出来</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master ingress-nginx]# kubectl apply -f baremetal-1.19-deploy.yaml </span><br><span class="line">namespace/ingress-nginx unchanged</span><br><span class="line">serviceaccount/ingress-nginx unchanged</span><br><span class="line">serviceaccount/ingress-nginx-admission unchanged</span><br><span class="line">role.rbac.authorization.k8s.io/ingress-nginx unchanged</span><br><span class="line">role.rbac.authorization.k8s.io/ingress-nginx-admission unchanged</span><br><span class="line">clusterrole.rbac.authorization.k8s.io/ingress-nginx unchanged</span><br><span class="line">clusterrole.rbac.authorization.k8s.io/ingress-nginx-admission unchanged</span><br><span class="line">rolebinding.rbac.authorization.k8s.io/ingress-nginx unchanged</span><br><span class="line">rolebinding.rbac.authorization.k8s.io/ingress-nginx-admission unchanged</span><br><span class="line">clusterrolebinding.rbac.authorization.k8s.io/ingress-nginx unchanged</span><br><span class="line">clusterrolebinding.rbac.authorization.k8s.io/ingress-nginx-admission unchanged</span><br><span class="line">configmap/ingress-nginx-controller unchanged</span><br><span class="line">service/ingress-nginx-controller configured</span><br><span class="line">service/ingress-nginx-controller-admission unchanged</span><br><span class="line">deployment.apps/ingress-nginx-controller configured</span><br><span class="line">job.batch/ingress-nginx-admission-create unchanged</span><br><span class="line">job.batch/ingress-nginx-admission-patch unchanged</span><br><span class="line">ingressclass.networking.k8s.io/nginx unchanged</span><br><span class="line">validatingwebhookconfiguration.admissionregistration.k8s.io/ingress-nginx-admission configured</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看ingress-nginx提供访问集群中服务的端口号"><a href="#查看ingress-nginx提供访问集群中服务的端口号" class="headerlink" title="查看ingress-nginx提供访问集群中服务的端口号"></a>查看ingress-nginx提供访问集群中服务的端口号</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master ingress-nginx]# kubectl get svc -n ingress-nginx</span><br><span class="line">NAME                                 TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)                      AGE</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">30925:访问服务的端口号</span></span><br><span class="line">ingress-nginx-controller             NodePort    10.109.216.122   &lt;none&gt;        80:30925/TCP,443:32140/TCP   18m</span><br><span class="line">ingress-nginx-controller-admission   ClusterIP   10.98.136.98     &lt;none&gt;        443/TCP                      18m</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h2 id="练习实例"><a href="#练习实例" class="headerlink" title="练习实例"></a>练习实例</h2><h3 id="编写yaml文件"><a href="#编写yaml文件" class="headerlink" title="编写yaml文件"></a>编写yaml文件</h3><p><strong>ingress.http.yaml</strong></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">apps/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Deployment</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">nginx-deployment</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">selector:</span></span><br><span class="line">    <span class="attr">matchLabels:</span></span><br><span class="line">      <span class="attr">app:</span> <span class="string">nginx</span></span><br><span class="line">  <span class="attr">replicas:</span> <span class="number">2</span></span><br><span class="line">  <span class="attr">template:</span></span><br><span class="line">    <span class="attr">metadata:</span></span><br><span class="line">      <span class="attr">labels:</span></span><br><span class="line">        <span class="attr">app:</span> <span class="string">nginx</span></span><br><span class="line">    <span class="attr">spec:</span></span><br><span class="line">      <span class="attr">containers:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">nginx</span></span><br><span class="line">        <span class="attr">image:</span> <span class="string">nginx:1.19.9</span></span><br><span class="line">        <span class="attr">ports:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">containerPort:</span> <span class="number">80</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span> </span><br><span class="line"><span class="attr">kind:</span> <span class="string">Service</span> </span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">nginx-svc</span> </span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">ports:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">port:</span> <span class="number">80</span> </span><br><span class="line">      <span class="attr">targetPort:</span> <span class="number">80</span> </span><br><span class="line">      <span class="attr">protocol:</span> <span class="string">TCP</span> </span><br><span class="line">  <span class="attr">selector:</span></span><br><span class="line">    <span class="attr">app:</span> <span class="string">nginx</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="创建Deployment和Service"><a href="#创建Deployment和Service" class="headerlink" title="创建Deployment和Service"></a>创建Deployment和Service</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl apply -f ingress.http.yaml</span><br></pre></td></tr></table></figure>
+
+<h2 id="创建Ingress"><a href="#创建Ingress" class="headerlink" title="创建Ingress"></a>创建Ingress</h2><h3 id="编写yaml文件-1"><a href="#编写yaml文件-1" class="headerlink" title="编写yaml文件"></a>编写yaml文件</h3><p><strong>ingress-test.yaml</strong> </p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">networking.k8s.io/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Ingress</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">minimal-ingress</span></span><br><span class="line">  <span class="attr">annotations:</span></span><br><span class="line">    <span class="attr">nginx.ingress.kubernetes.io/rewrite-target:</span> <span class="string">/</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">rules:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">host:</span> <span class="string">www.test-ingress.cn</span></span><br><span class="line">    <span class="attr">http:</span></span><br><span class="line">      <span class="attr">paths:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">path:</span> <span class="string">/</span></span><br><span class="line">        <span class="attr">pathType:</span> <span class="string">Prefix</span></span><br><span class="line">        <span class="attr">backend:</span></span><br><span class="line">          <span class="attr">service:</span></span><br><span class="line">            <span class="attr">name:</span> <span class="string">nginx-svc</span></span><br><span class="line">            <span class="attr">port:</span></span><br><span class="line">              <span class="attr">number:</span> <span class="number">80</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="创建Ingress-1"><a href="#创建Ingress-1" class="headerlink" title="创建Ingress"></a>创建Ingress</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl apply -f ingress.http.yaml</span><br></pre></td></tr></table></figure>
+
+<p>访问已创建的nginx服务</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://www.test-ingress.cn:30925/index.html</span><br></pre></td></tr></table></figure>
+
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><ul>
+<li><p>k8s”failed to set bridge addr: “cni0” already has an IP address different from 10.244.1.1&#x2F;24</p>
+<ul>
+<li><pre><code class="shell"># 重新初始化节点时，没有清除子节点的网卡信息，再创建nginx-pod可能会导致上述错误
+# 检查各个子节点网卡配置
+ip addr|grep cni0
+# 停用网卡并删除网卡信息
+sudo ifconfig cni0 down
+sudo ip link delete cni0
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Wuli_SmBug/article/details/104712653">(97条消息) 解决k8s”failed to set bridge addr: “cni0” already has an IP address different from 10.244.1.1&#x2F;24”_ST_君华的博客-CSDN博客_cni0重建</a></p>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://114.115.216.198/2022/06/14/k8s%E9%9B%86%E7%BE%A4nginx%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/" data-id="cl4gh0zt90003lglidr5of8pe" data-title="k8s集群nginx应用实例" class="article-share-link">分享</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/06/15/k8s%E9%9B%86%E7%BE%A4%E5%8D%87%E7%BA%A7%E3%80%90v1.18.0%20-%20v1.19.16%E3%80%91/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          k8s集群升级【v1.18.0 -&gt; v1.19.16】
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/06/14/k8s%E9%9B%86%E7%BE%A4%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85-1.18.0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">k8s集群环境安装-1.18.0</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/k8s/" rel="tag">k8s</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kafka/" rel="tag">kafka</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yapi/" rel="tag">yapi</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/k8s/" style="font-size: 10px;">k8s</a> <a href="/tags/kafka/" style="font-size: 10px;">kafka</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/yapi/" style="font-size: 20px;">yapi</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">六月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/06/15/kafka_2.11-2.1.0%E9%85%8D%E7%BD%AESASL:PLAIN%E8%AE%A4%E8%AF%81%E5%AE%9E%E8%B7%B5/">kafka_2.11-2.1.0配置SASL/PLAIN认证实践</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/15/k8s%E9%9B%86%E7%BE%A4%E5%8D%87%E7%BA%A7%E3%80%90v1.18.0%20-%20v1.19.16%E3%80%91/">k8s集群升级【v1.18.0 -&gt; v1.19.16】</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/14/k8s%E9%9B%86%E7%BE%A4nginx%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/">k8s集群nginx应用实例</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/14/k8s%E9%9B%86%E7%BE%A4%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85-1.18.0/">k8s集群环境安装-1.18.0</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/16/Yapi%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/">Yapi安装教程</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 zhukelili<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

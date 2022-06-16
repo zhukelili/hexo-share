@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>kafka_2.11-2.1.0配置SASL/PLAIN认证实践 | zhukelili-blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="本着傻瓜式配置，可重复搭建kafka的指导思想编写本文档 快速满足安全加固要求  虚拟机操作系统信息12345678910 Static hostname: localhost.localdomain       Icon name: computer-vm         Chassis: vm      Machine ID: c744f9429d54f945b3b38d3eb7f3a591">
+<meta property="og:type" content="article">
+<meta property="og:title" content="kafka_2.11-2.1.0配置SASL&#x2F;PLAIN认证实践">
+<meta property="og:url" content="http://114.115.216.198/2022/06/15/kafka_2.11-2.1.0%E9%85%8D%E7%BD%AESASL:PLAIN%E8%AE%A4%E8%AF%81%E5%AE%9E%E8%B7%B5/index.html">
+<meta property="og:site_name" content="zhukelili-blog">
+<meta property="og:description" content="本着傻瓜式配置，可重复搭建kafka的指导思想编写本文档 快速满足安全加固要求  虚拟机操作系统信息12345678910 Static hostname: localhost.localdomain       Icon name: computer-vm         Chassis: vm      Machine ID: c744f9429d54f945b3b38d3eb7f3a591">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-06-15T13:32:00.000Z">
+<meta property="article:modified_time" content="2022-06-15T13:37:43.144Z">
+<meta property="article:author" content="zhukelili">
+<meta property="article:tag" content="kafka">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="zhukelili-blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">zhukelili-blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">有想法 有目标 有方法 有工作 有生活 有变化</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://114.115.216.198"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-kafka_2.11-2.1.0配置SASL:PLAIN认证实践" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/15/kafka_2.11-2.1.0%E9%85%8D%E7%BD%AESASL:PLAIN%E8%AE%A4%E8%AF%81%E5%AE%9E%E8%B7%B5/" class="article-date">
+  <time class="dt-published" datetime="2022-06-15T13:32:00.000Z" itemprop="datePublished">2022-06-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      kafka_2.11-2.1.0配置SASL/PLAIN认证实践
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>本着傻瓜式配置，可重复搭建kafka的指导思想编写本文档</li>
+<li>快速满足安全加固要求</li>
+</ul>
+<h2 id="虚拟机操作系统信息"><a href="#虚拟机操作系统信息" class="headerlink" title="虚拟机操作系统信息"></a>虚拟机操作系统信息</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> Static hostname: localhost.localdomain</span><br><span class="line">       Icon name: computer-vm</span><br><span class="line">         Chassis: vm</span><br><span class="line">      Machine ID: c744f9429d54f945b3b38d3eb7f3a591</span><br><span class="line">         Boot ID: 3fc16fddef1543deb3c57a6bac71a670</span><br><span class="line">  Virtualization: kvm</span><br><span class="line">Operating System: CentOS Linux 7 (Core)</span><br><span class="line">     CPE OS Name: cpe:/o:centos:centos:7</span><br><span class="line">          Kernel: Linux 3.10.0-1160.49.1.el7.x86_64</span><br><span class="line">    Architecture: x86-64</span><br></pre></td></tr></table></figure>
+
+<h2 id="版本信息"><a href="#版本信息" class="headerlink" title="版本信息"></a>版本信息</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://archive.apache.org/dist/kafka/2.1.0/kafka_2.11-2.1.0.tgz">kafka_2.11-2.1.0</a></li>
+<li><a target="_blank" rel="noopener" href="https://archive.apache.org/dist/zookeeper/zookeeper-3.4.13/zookeeper-3.4.13.tar.gz">zookeeper-3.4.13</a></li>
+</ul>
+<h2 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h2><h3 id="1-解压到指定目录，假设文件放于-x2F-home-x2F-kafka目录下"><a href="#1-解压到指定目录，假设文件放于-x2F-home-x2F-kafka目录下" class="headerlink" title="1. 解压到指定目录，假设文件放于&#x2F;home&#x2F;kafka目录下"></a>1. 解压到指定目录，假设文件放于&#x2F;home&#x2F;kafka目录下</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">上传到/home/kafka目录</span></span><br><span class="line">scp kafka_2.11-2.1.0.tgz root@192.168.2.21:/home/kafka</span><br><span class="line">scp zookeeper-3.4.13.tar.gz root@192.168.2.21:/home/kafka</span><br><span class="line"></span><br><span class="line">cd /home</span><br><span class="line">tar zxvf kafka_2.11-2.1.0.tgz</span><br><span class="line">tar zxvf zookeeper-3.4.13.tar.gz</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-添加SASL-x2F-PLAIN配置信息"><a href="#2-添加SASL-x2F-PLAIN配置信息" class="headerlink" title="2. 添加SASL&#x2F;PLAIN配置信息"></a>2. 添加SASL&#x2F;PLAIN配置信息</h3><p>为了满足测试，需要修改的文件如下</p>
+<h4 id="home-kafka-kafka-2-11-2-1-0-config"><a href="#home-kafka-kafka-2-11-2-1-0-config" class="headerlink" title="/home/kafka/kafka_2.11-2.1.0/config"></a><code>/home/kafka/kafka_2.11-2.1.0/config</code></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── consumer.properties</span><br><span class="line">├── kafka_server_jaas.conf</span><br><span class="line">├── producer.properties</span><br><span class="line">├── server.properties</span><br><span class="line">├── zk_server_jaas.conf</span><br><span class="line">└── zookeeper.properties</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h5 id="kafka-server-jaas-conf"><a href="#kafka-server-jaas-conf" class="headerlink" title="kafka_server_jaas.conf"></a>kafka_server_jaas.conf</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi kafka_server_jaas.conf</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">KafkaServer &#123;</span><br><span class="line">  org.apache.kafka.common.security.plain.PlainLoginModule required</span><br><span class="line">    <span class="attr">username</span>=<span class="string">&quot;admin&quot;</span></span><br><span class="line">    <span class="attr">password</span>=<span class="string">&quot;adminpass&quot;</span></span><br><span class="line">    <span class="attr">user_admin</span>=<span class="string">&quot;adminpass&quot;</span></span><br><span class="line">    <span class="attr">user_test</span>=<span class="string">&quot;testpass&quot;</span><span class="comment">;</span></span><br><span class="line">&#125;<span class="comment">;</span></span><br><span class="line">KafkaClient &#123;</span><br><span class="line">  org.apache.kafka.common.security.plain.PlainLoginModule required</span><br><span class="line">    <span class="attr">username</span>=<span class="string">&quot;admin&quot;</span></span><br><span class="line">    <span class="attr">password</span>=<span class="string">&quot;adminpass&quot;</span></span><br><span class="line">    <span class="attr">user_admin</span>=<span class="string">&quot;adminpass&quot;</span></span><br><span class="line">    <span class="attr">user_test</span>=<span class="string">&quot;testpass&quot;</span><span class="comment">;</span></span><br><span class="line">&#125;<span class="comment">;</span></span><br><span class="line">Client &#123;</span><br><span class="line">  org.apache.kafka.common.security.plain.PlainLoginModule required</span><br><span class="line">    <span class="attr">username</span>=<span class="string">&quot;admin&quot;</span></span><br><span class="line">    <span class="attr">password</span>=<span class="string">&quot;adminpass&quot;</span></span><br><span class="line">    <span class="attr">user_admin</span>=<span class="string">&quot;adminpass&quot;</span><span class="comment">;</span></span><br><span class="line">&#125;<span class="comment">;</span></span><br><span class="line">Server &#123;</span><br><span class="line">  org.apache.kafka.common.security.plain.PlainLoginModule required</span><br><span class="line">    <span class="attr">username</span>=<span class="string">&quot;admin&quot;</span></span><br><span class="line">    <span class="attr">password</span>=<span class="string">&quot;adminpass&quot;</span></span><br><span class="line">    <span class="attr">user_admin</span>=<span class="string">&quot;adminpass&quot;</span><span class="comment">;</span></span><br><span class="line">&#125;<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="producer-properties末尾追加如下配置"><a href="#producer-properties末尾追加如下配置" class="headerlink" title="producer.properties末尾追加如下配置"></a>producer.properties末尾追加如下配置</h5><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">security.protocol</span>=<span class="string">SASL_PLAINTEXT</span></span><br><span class="line"><span class="attr">sasl.mechanism</span>=<span class="string">PLAIN</span></span><br><span class="line"><span class="attr">sasl.jaas.config</span>=<span class="string">org.apache.kafka.common.security.plain.PlainLoginModule required \</span></span><br><span class="line"><span class="string">    username=&quot;admin&quot; \</span></span><br><span class="line"><span class="string">    password=&quot;adminpass&quot;;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="server-properties"><a href="#server-properties" class="headerlink" title="server.properties"></a>server.properties</h5><figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 注释</span></span><br><span class="line"><span class="comment">#listeners=PLAINTEXT://0.0.0.0:9092</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">listeners</span>=<span class="string">SASL_PLAINTEXT://localhost:9092</span></span><br><span class="line"><span class="attr">security.inter.broker.protocol</span>=<span class="string">SASL_PLAINTEXT</span></span><br><span class="line"><span class="attr">sasl.enabled.mechanisms</span>=<span class="string">PLAIN</span></span><br><span class="line"><span class="attr">sasl.mechanism.inter.broker.protocol</span>=<span class="string">PLAIN</span></span><br><span class="line"><span class="attr">authorizer.class.name</span>=<span class="string">kafka.security.auth.SimpleAclAuthorizer</span></span><br><span class="line"><span class="attr">allow.everyone.if.no.acl.found</span>=<span class="string">false</span></span><br><span class="line"><span class="comment"># 参数 allow.everyone.if.no.acl.found</span></span><br><span class="line"><span class="comment"># 设置为 true，ACL 机制改为黑名单机制，只有黑名单中的用户无法访问</span></span><br><span class="line"><span class="comment"># 设置为 false，ACL 机制改为白名单机制，只有白名单中的用户可以访问，默认值为 false</span></span><br><span class="line"><span class="attr">auto.create.topics.enable</span>=<span class="string">false</span></span><br><span class="line"><span class="attr">super.users</span>=<span class="string">User:admin</span></span><br><span class="line"><span class="attr">zookeeper.set.acl</span>=<span class="string">true</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="zk-server-jaas-conf"><a href="#zk-server-jaas-conf" class="headerlink" title="zk_server_jaas.conf"></a>zk_server_jaas.conf</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi zk_server_jaas.conf</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Client &#123;</span><br><span class="line">  org.apache.zookeeper.server.auth.DigestLoginModule required</span><br><span class="line">    <span class="attr">user_admin</span>=<span class="string">&quot;adminpass&quot;</span><span class="comment">;</span></span><br><span class="line">&#125;<span class="comment">;</span></span><br><span class="line">Server &#123;</span><br><span class="line">  org.apache.zookeeper.server.auth.DigestLoginModule required</span><br><span class="line">    <span class="attr">user_admin</span>=<span class="string">&quot;adminpass&quot;</span><span class="comment">;</span></span><br><span class="line">&#125;<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="zookeeper-properties末尾追加如下配置"><a href="#zookeeper-properties末尾追加如下配置" class="headerlink" title="zookeeper.properties末尾追加如下配置"></a>zookeeper.properties末尾追加如下配置</h5><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">authProvider.1</span>=org.apache.zookeeper.server.auth.SASLAuthenticationProvider</span><br><span class="line"><span class="attr">requireClientAuthScheme</span>=sasl</span><br><span class="line"><span class="attr">jaasLoginRenew</span>=<span class="number">3600000</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="home-kafka-kafka-2-11-2-1-0-bin"><a href="#home-kafka-kafka-2-11-2-1-0-bin" class="headerlink" title="/home/kafka/kafka_2.11-2.1.0/bin"></a><code>/home/kafka/kafka_2.11-2.1.0/bin</code></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── kafka-console-consumer.sh</span><br><span class="line">├── kafka-console-producer.sh</span><br><span class="line">├── kafka-server-start.sh</span><br><span class="line">├── kafka-topics.sh</span><br><span class="line">├── zookeeper-security-migration.sh</span><br><span class="line">├── zookeeper-server-start.sh</span><br></pre></td></tr></table></figure>
+
+<h5 id="kafka-console-consumer-sh、kafka-console-producer-sh"><a href="#kafka-console-consumer-sh、kafka-console-producer-sh" class="headerlink" title="kafka-console-consumer.sh、kafka-console-producer.sh"></a>kafka-console-consumer.sh、kafka-console-producer.sh</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if [ &quot;x$KAFKA_HEAP_OPTS&quot; = &quot;x&quot; ]; then</span><br><span class="line">    export KAFKA_HEAP_OPTS=&quot;-Xmx512M&quot; # 找到当前行，追加如下内容</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if [ &quot;x$KAFKA_HEAP_OPTS&quot; = &quot;x&quot; ]; then</span><br><span class="line">    export KAFKA_HEAP_OPTS=&quot;-Xmx512M -Djava.security.auth.login.config=/home/kafka/kafka_2.11-2.1.0/config/kafka_client_jaas.conf&quot;</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+
+<h5 id="kafka-server-start-sh"><a href="#kafka-server-start-sh" class="headerlink" title="kafka-server-start.sh"></a>kafka-server-start.sh</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if [ &quot;x$KAFKA_HEAP_OPTS&quot; = &quot;x&quot; ]; then</span><br><span class="line">    export KAFKA_HEAP_OPTS=&quot;-Xmx1G -Xms1G&quot; # 找到当前行，追加如下内容</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if [ &quot;x$KAFKA_HEAP_OPTS&quot; = &quot;x&quot; ]; then</span><br><span class="line">    export KAFKA_HEAP_OPTS=&quot;-Xmx1G -Xms1G -Djava.security.auth.login.config=/home/kafka/kafka_2.11-2.1.0/config/kafka_server_jaas.conf&quot;</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+
+<h5 id="kafka-topics-sh"><a href="#kafka-topics-sh" class="headerlink" title="kafka-topics.sh"></a>kafka-topics.sh</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exec $(dirname $0)/kafka-run-class.sh kafka.admin.TopicCommand &quot;$@&quot; # 找到当前行，在上面追加如下内容</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export KAFKA_OPTS=&quot;-Djava.security.auth.login.config=/home/kafka/kafka_2.11-2.1.0/config/kafka_server_jaas.conf&quot;</span><br><span class="line"></span><br><span class="line">exec $(dirname $0)/kafka-run-class.sh kafka.admin.TopicCommand &quot;$@&quot;</span><br></pre></td></tr></table></figure>
+
+<h5 id="zookeeper-security-migration-sh"><a href="#zookeeper-security-migration-sh" class="headerlink" title="zookeeper-security-migration.sh"></a>zookeeper-security-migration.sh</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exec $(dirname $0)/kafka-run-class.sh kafka.admin.ZkSecurityMigrator &quot;$@&quot; # 找到当前行，在上面追加如下内容</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export KAFKA_OPTS=&quot;-Djava.security.auth.login.config=/home/kafka/kafka_2.11-2.1.0/config/kafka_server_jaas.conf&quot;</span><br><span class="line"></span><br><span class="line">exec $(dirname $0)/kafka-run-class.sh kafka.admin.ZkSecurityMigrator &quot;$@&quot;</span><br></pre></td></tr></table></figure>
+
+<h5 id="zookeeper-server-start-sh"><a href="#zookeeper-server-start-sh" class="headerlink" title="zookeeper-server-start.sh"></a>zookeeper-server-start.sh</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if [ &quot;x$KAFKA_HEAP_OPTS&quot; = &quot;x&quot; ]; then</span><br><span class="line">    export KAFKA_HEAP_OPTS=&quot;-Xmx512M -Xms512M &quot; # 找到当前行，追加如下内容</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if [ &quot;x$KAFKA_HEAP_OPTS&quot; = &quot;x&quot; ]; then</span><br><span class="line">    export KAFKA_HEAP_OPTS=&quot;-Xmx512M -Xms512M -Djava.security.auth.login.config=/home/kafka/kafka_2.11-2.1.0/config/zk_server_jaas.conf&quot;</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-启动服务"><a href="#3-启动服务" class="headerlink" title="3. 启动服务"></a>3. 启动服务</h4><p>强烈建议准备全新安装之后的操作系统环境，避免重复验证时出现干扰因素，浪费时间排查问题</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">cd /home/kafka/kafka_2.11-2.1.0/</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">新开终端，执行如下命令</span></span><br><span class="line">./bin/kafka-server-start.sh config/server.properties</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">新开终端，执行如下命令</span></span><br><span class="line">./bin/zookeeper-server-start.sh config/zookeeper.properties </span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">新开终端，执行如下命令，创建成功后，再启动生产者、消费者</span></span><br><span class="line">./bin/kafka-topics.sh  --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">新开终端，执行如下命令</span></span><br><span class="line">./bin/kafka-console-producer.sh  --broker-list localhost:9092 --producer.config=cig/producer.properties --topic test</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">新开终端，执行如下命令</span></span><br><span class="line">./bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --consumer.config config/consumer.properties --topic test --from-beginning </span><br></pre></td></tr></table></figure>
+
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><ul>
+<li><p><a target="_blank" rel="noopener" href="https://kyle.ai/blog/7631.html">写的太好了&#x3D;》给 Kafka 配置 SASL&#x2F;PLAIN 认证 | Kyle’s Blog</a></p>
+<blockquote>
+<p>本人找到这篇文章前，确实也遇到了相同的问题<br>定义用户的方式非常奇葩，很难理解。username 和 password 两字段定义 Kafka brokers 内部沟通的用户密码，user_用户名 配置的是 client 连接 broker 时用的用户、密码。据我尝试，必须定义一个 username 用户对应的 user_ 字段，否则连不上。就像上面，有个 username&#x3D;”testuser” ，所以必须再定义一次 user_testuser 且密码保持一致。此外可以再添加新用户，如添加 user_alice&#x3D;”alice-secret” 。</p>
+</blockquote>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.runoob.com/w3cnote/zookeeper-acl.html">10.0 Zookeeper 权限控制 ACL | 菜鸟教程 (runoob.com)</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://kafka.apache.org/21/documentation.html#uses">Apache Kafka</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://zoonavigator.elkozmon.com/en/latest/">Welcome — ZooNavigator Docs (elkozmon.com)</a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker run \</span><br><span class="line">  --rm \</span><br><span class="line">  -e HTTP_PORT=9000 \</span><br><span class="line">  --name zoonavigator \</span><br><span class="line">  -p 9000:9000 \</span><br><span class="line">  elkozmon/zoonavigator:latest</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://114.115.216.198/2022/06/15/kafka_2.11-2.1.0%E9%85%8D%E7%BD%AESASL:PLAIN%E8%AE%A4%E8%AF%81%E5%AE%9E%E8%B7%B5/" data-id="cl4gh0zte0008lgli9pt9ctm7" data-title="kafka_2.11-2.1.0配置SASL/PLAIN认证实践" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kafka/" rel="tag">kafka</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2022/06/15/k8s%E9%9B%86%E7%BE%A4%E5%8D%87%E7%BA%A7%E3%80%90v1.18.0%20-%20v1.19.16%E3%80%91/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">k8s集群升级【v1.18.0 -&gt; v1.19.16】</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/k8s/" rel="tag">k8s</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kafka/" rel="tag">kafka</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yapi/" rel="tag">yapi</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/k8s/" style="font-size: 10px;">k8s</a> <a href="/tags/kafka/" style="font-size: 10px;">kafka</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/yapi/" style="font-size: 20px;">yapi</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">六月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/06/15/kafka_2.11-2.1.0%E9%85%8D%E7%BD%AESASL:PLAIN%E8%AE%A4%E8%AF%81%E5%AE%9E%E8%B7%B5/">kafka_2.11-2.1.0配置SASL/PLAIN认证实践</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/15/k8s%E9%9B%86%E7%BE%A4%E5%8D%87%E7%BA%A7%E3%80%90v1.18.0%20-%20v1.19.16%E3%80%91/">k8s集群升级【v1.18.0 -&gt; v1.19.16】</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/14/k8s%E9%9B%86%E7%BE%A4nginx%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/">k8s集群nginx应用实例</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/14/k8s%E9%9B%86%E7%BE%A4%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85-1.18.0/">k8s集群环境安装-1.18.0</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/16/Yapi%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/">Yapi安装教程</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 zhukelili<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

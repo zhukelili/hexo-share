@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Yapi安装教程 | zhukelili-blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="环境要求操作系统1234567891011[root@localhost my-yapi]# hostnamectl   Static hostname: localhost.localdomain         Icon name: computer-vm           Chassis: vm        Machine ID: 587bf0fa280e8647b41e0e84a96c">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Yapi安装教程">
+<meta property="og:url" content="http://114.115.216.198/2022/03/16/Yapi%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/index.html">
+<meta property="og:site_name" content="zhukelili-blog">
+<meta property="og:description" content="环境要求操作系统1234567891011[root@localhost my-yapi]# hostnamectl   Static hostname: localhost.localdomain         Icon name: computer-vm           Chassis: vm        Machine ID: 587bf0fa280e8647b41e0e84a96c">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://114.115.216.198/Users/insist/Desktop/yapi.png">
+<meta property="article:published_time" content="2022-03-16T01:57:00.000Z">
+<meta property="article:modified_time" content="2022-06-16T01:25:55.127Z">
+<meta property="article:author" content="zhukelili">
+<meta property="article:tag" content="yapi">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://114.115.216.198/Users/insist/Desktop/yapi.png">
+  
+    <link rel="alternate" href="/atom.xml" title="zhukelili-blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">zhukelili-blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">有想法 有目标 有方法 有工作 有生活 有变化</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://114.115.216.198"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Yapi安装教程" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/03/16/Yapi%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/" class="article-date">
+  <time class="dt-published" datetime="2022-03-16T01:57:00.000Z" itemprop="datePublished">2022-03-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Yapi安装教程
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="环境要求"><a href="#环境要求" class="headerlink" title="环境要求"></a>环境要求</h2><h3 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost my-yapi]# hostnamectl</span><br><span class="line">   Static hostname: localhost.localdomain</span><br><span class="line">         Icon name: computer-vm</span><br><span class="line">           Chassis: vm</span><br><span class="line">        Machine ID: 587bf0fa280e8647b41e0e84a96ce63b</span><br><span class="line">           Boot ID: 421c970c95864c0a90af78a5d3ba29a4</span><br><span class="line">    Virtualization: kvm</span><br><span class="line">  Operating System: CentOS Linux 7 (Core)</span><br><span class="line">       CPE OS Name: cpe:/o:centos:centos:7</span><br><span class="line">            Kernel: Linux 3.10.0-862.el7.x86_64</span><br><span class="line">      Architecture: x86-64</span><br></pre></td></tr></table></figure>
+
+<h3 id="版本信息"><a href="#版本信息" class="headerlink" title="版本信息"></a>版本信息</h3><ul>
+<li>Yapi 1.7.0</li>
+<li>nodejs v8.8.0</li>
+<li>git version 1.8.3.1</li>
+<li>Swagger 2.7.0</li>
+</ul>
+<h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install git wget</span><br></pre></td></tr></table></figure>
+
+<h1 id="Node-js-安装配置"><a href="#Node-js-安装配置" class="headerlink" title="Node.js 安装配置"></a>Node.js 安装配置</h1><h3 id="设置环境变量"><a href="#设置环境变量" class="headerlink" title="设置环境变量"></a>设置环境变量</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">wget https://nodejs.org/dist/v8.8.0/node-v8.8.0-linux-x64.tar.xz</span><br><span class="line"></span><br><span class="line">tar xf node-v8.8.0-linux-x64.tar.xz</span><br><span class="line"></span><br><span class="line">cd node-v8.8.0-linux-x64</span><br><span class="line"></span><br><span class="line">./bin/node -v </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">v8.8.0</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="使用-ln-命令来设置软连接"><a href="#使用-ln-命令来设置软连接" class="headerlink" title="使用 ln 命令来设置软连接"></a>使用 ln 命令来设置软连接</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ln -s /root/node-v8.8.0-linux-x64/bin/npm   /usr/local/bin/ </span><br><span class="line">ln -s /root/node-v8.8.0-linux-x64/bin/node   /usr/local/bin/</span><br></pre></td></tr></table></figure>
+
+<h3 id="npm-安装指定版本包"><a href="#npm-安装指定版本包" class="headerlink" title="npm 安装指定版本包"></a>npm 安装指定版本包</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npm config set registry https://registry.npm.taobao.org</span><br><span class="line"></span><br><span class="line">npm init -f</span><br><span class="line">npm install mongoose@^4.1.12 --save</span><br></pre></td></tr></table></figure>
+
+<h1 id="Linux平台安装MongoDB"><a href="#Linux平台安装MongoDB" class="headerlink" title="Linux平台安装MongoDB"></a>Linux平台安装MongoDB</h1><h3 id="安装Linux-平台依赖包"><a href="#安装Linux-平台依赖包" class="headerlink" title="安装Linux 平台依赖包"></a>安装Linux 平台依赖包</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install libcurl openssl</span><br></pre></td></tr></table></figure>
+
+<h3 id="设置环境变量-1"><a href="#设置环境变量-1" class="headerlink" title="设置环境变量"></a>设置环境变量</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install libcurl openssl</span><br><span class="line"></span><br><span class="line">wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel70-5.0.6.tgz</span><br><span class="line"></span><br><span class="line">tar tar zxvf mongodb-linux-x86_64-rhel70-5.0.6.tgz</span><br><span class="line"></span><br><span class="line">mv mongodb-linux-x86_64-rhel70-5.0.6 /usr/local/mongodb5</span><br><span class="line"></span><br><span class="line">export PATH=/usr/local/mongodb5/bin:$PATH</span><br></pre></td></tr></table></figure>
+
+<h3 id="创建数据库目录"><a href="#创建数据库目录" class="headerlink" title="创建数据库目录"></a>创建数据库目录</h3><p>默认情况下 MongoDB 启动后会初始化以下两个目录：</p>
+<ul>
+<li>数据存储目录：&#x2F;var&#x2F;lib&#x2F;mongodb</li>
+<li>日志文件目录：&#x2F;var&#x2F;log&#x2F;mongodb</li>
+</ul>
+<h4 id="我们在启动前可以先创建这两个目录并设置当前用户有读写权限："><a href="#我们在启动前可以先创建这两个目录并设置当前用户有读写权限：" class="headerlink" title="我们在启动前可以先创建这两个目录并设置当前用户有读写权限："></a>我们在启动前可以先创建这两个目录并设置当前用户有读写权限：</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo mkdir -p /var/lib/mongo</span><br><span class="line">sudo mkdir -p /var/log/mongodb</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">设置权限</span></span><br><span class="line">sudo chown `whoami` /var/lib/mongo     </span><br><span class="line">sudo chown `whoami` /var/log/mongodb</span><br></pre></td></tr></table></figure>
+
+<h4 id="接下来后台启动-Mongodb-服务："><a href="#接下来后台启动-Mongodb-服务：" class="headerlink" title="接下来后台启动 Mongodb 服务："></a>接下来后台启动 Mongodb 服务：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongod --dbpath /var/lib/mongo --logpath /var/log/mongodb/mongod.log --fork</span><br></pre></td></tr></table></figure>
+
+<h4 id="打开-x2F-var-x2F-log-x2F-mongodb-x2F-mongod-log-文件看到以下信息，说明启动成功。"><a href="#打开-x2F-var-x2F-log-x2F-mongodb-x2F-mongod-log-文件看到以下信息，说明启动成功。" class="headerlink" title="打开 &#x2F;var&#x2F;log&#x2F;mongodb&#x2F;mongod.log 文件看到以下信息，说明启动成功。"></a>打开 &#x2F;var&#x2F;log&#x2F;mongodb&#x2F;mongod.log 文件看到以下信息，说明启动成功。</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># tail -10f /var/log/mongodb/mongod.log</span><br><span class="line">2020-07-09T12:20:17.391+0800 I  NETWORK  [listener] Listening on /tmp/mongodb-27017.sock</span><br><span class="line">2020-07-09T12:20:17.392+0800 I  NETWORK  [listener] Listening on 127.0.0.1</span><br><span class="line">2020-07-09T12:20:17.392+0800 I  NETWORK  [listener] waiting for connections on port 27017</span><br></pre></td></tr></table></figure>
+
+<h3 id="可视化部署Yapi-推荐"><a href="#可视化部署Yapi-推荐" class="headerlink" title="可视化部署Yapi[推荐]"></a>可视化部署Yapi[推荐]</h3><p>启动部署程序</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install -g yapi-cli --registry https://registry.npm.taobao.org</span><br><span class="line">ln -s /root/node-v8.8.0-linux-x64/bin/yapi  /usr/local/bin/</span><br><span class="line">yapi server</span><br></pre></td></tr></table></figure>
+
+<p>根据提示，修改访问地址为部署IP，进行页面配置部署</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在浏览器打开 http://0.0.0.0:9090 访问。非本地服务器，请将 0.0.0.0 替换成指定的域名或ip </span><br></pre></td></tr></table></figure>
+
+<p><img src="/Users/insist/Desktop/yapi.png" alt="yapi"></p>
+<h2 id="部署成功"><a href="#部署成功" class="headerlink" title="部署成功"></a>部署成功</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">依赖库安装完成，正在初始化数据库mongodb...</span><br><span class="line"><span class="meta prompt_">&gt; </span><span class="language-bash">yapi-vendor@1.7.0 install-server /opt/my-yapi/vendors &gt; node server/install.js</span></span><br><span class="line">log: mongodb load success...</span><br><span class="line">初始化管理员账号成功,账号名：&quot;admin@admin.com&quot;，密码：&quot;ymfe.org&quot;</span><br><span class="line">部署成功，请切换到部署目录，输入： &quot;node vendors/server/app.js&quot; 指令启动服务器, 然后在浏览器打开 http://127.0.0.1:3000 访问</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">【node vendors/server/app.js】pm2负责管理yapi服务用的到</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="利用pm2方便服务管理维护"><a href="#利用pm2方便服务管理维护" class="headerlink" title="利用pm2方便服务管理维护"></a>利用pm2方便服务管理维护</h2><h3 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# ll</span><br><span class="line">total 112056</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">mongodb安装包</span></span><br><span class="line">-rw-r--r--.  1 root root 85778066 Mar 14 16:59 mongodb-linux-x86_64-rhel70-5.0.6.tgz</span><br><span class="line">drwxr-xr-x. 19 root root     4096 Mar 14 16:32 node_modules</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">node-v8.8.0-linux-x64.tar.xz解压之后的目录</span></span><br><span class="line">drwxrwxr-x.  8 root root      164 Mar 14 14:31 node-v8.8.0-linux-x64</span><br><span class="line">-rw-r--r--.  1 root root 11305372 Mar 14 14:29 node-v8.8.0-linux-x64.tar.xz</span><br><span class="line">-rw-r--r--.  1 root root      297 Mar 14 16:31 package.json</span><br><span class="line">-rw-r--r--.  1 root root     7972 Mar 14 16:32 package-lock.json</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">yapi-1.9.3.tar.gz解压之后目录，重命名得到vendors</span></span><br><span class="line">drwxrwxr-x. 11 root root     4096 Mar 14 16:37 vendors</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">yapi安装包</span></span><br><span class="line">-rw-r--r--.  1 root root 17632287 Mar 10 13:07 yapi-1.9.3.tar.gz</span><br></pre></td></tr></table></figure>
+
+<h3 id="安装pm2"><a href="#安装pm2" class="headerlink" title="安装pm2"></a>安装pm2</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">安装pm2</span></span><br><span class="line">npm install pm2 -g </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">创建命令软链接</span></span><br><span class="line">ln -s /root/node-v8.8.0-linux-x64/bin/pm2  /usr/local/bin/</span><br><span class="line">cd /opt/my-yapi</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">pm2管理yapi服务</span></span><br><span class="line">pm2 start &quot;node vendors/server/app.js&quot; --name yapi </span><br></pre></td></tr></table></figure>
+
+<h3 id="pm2管理结果"><a href="#pm2管理结果" class="headerlink" title="pm2管理结果"></a>pm2管理结果</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# /root/node-v8.8.0-linux-x64/bin/pm2 start &quot;vendors/server/app.js&quot; --name yapi </span><br><span class="line">[PM2] Starting /root/vendors/server/app.js in fork_mode (1 instance)</span><br><span class="line">[PM2] Done.</span><br><span class="line">┌─────┬─────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬──────────┬──────────┐</span><br><span class="line">│ id  │ name    │ namespace   │ version │ mode    │ pid      │ uptime │ ↺    │ status    │ cpu      │ mem      │ user     │ watching │</span><br><span class="line">├─────┼─────────┼─────────────┼─────────┼─────────┼──────────┼────────┼──────┼───────────┼──────────┼──────────┼──────────┼──────────┤</span><br><span class="line">│ 0   │ yapi    │ default     │ 1.9.2   │ fork    │ 7487     │ 0s     │ 0    │ online    │ 0%       │ 12.8mb   │ root     │ disabled │</span><br></pre></td></tr></table></figure>
+
+<h3 id="pm2常用命令"><a href="#pm2常用命令" class="headerlink" title="pm2常用命令"></a>pm2常用命令</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看服务信息</span></span><br><span class="line">pm2 info yapi</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">停止服务</span></span><br><span class="line">pm2 stop yapi </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">重启服务</span></span><br><span class="line">pm2 restart yapi </span><br></pre></td></tr></table></figure>
+
+<h3 id="PM2-的幾個指令"><a href="#PM2-的幾個指令" class="headerlink" title="PM2 的幾個指令"></a>PM2 的幾個指令</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">pm2 start （啟動程序）</span><br><span class="line">pm2 restart （重新啟動程序）</span><br><span class="line">pm2 logs （監控 log 訊息）</span><br><span class="line">pm2 show （檢視指定ID的詳細資訊）</span><br><span class="line">pm2 kill （刪除所有的程序）</span><br><span class="line">pm2 delete （刪除指定ID的程序）</span><br><span class="line">pm2 stop （停止指定ID的程序，不刪除）</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="同步swagger接口文档"><a href="#同步swagger接口文档" class="headerlink" title="同步swagger接口文档"></a>同步swagger接口文档</h2><h3 id="同时获取多个文件"><a href="#同时获取多个文件" class="headerlink" title="同时获取多个文件"></a>同时获取多个文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -o swagger-0.json http://localhost:8089/v2/api-docs -o swagger-1.json http://localhost:8089/v2/api-docs</span><br></pre></td></tr></table></figure>
+
+<h3 id="将json文件导入Yapi"><a href="#将json文件导入Yapi" class="headerlink" title="将json文件导入Yapi"></a>将json文件导入Yapi</h3><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/48525546/how-to-export-swagger-json-or-yaml">How to export swagger.json (or yaml) - Stack Overflow</a></li>
+<li><a target="_blank" rel="noopener" href="https://segmentfault.com/q/1010000012930521">npm install模块时 报错：not such file or directory。是何原因？ - SegmentFault 思否</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/mrzhangdulin/article/details/103816094">(103条消息) node项目报错had too many unstable restarts (16). Stopped. “errored”_mrzhangdulin的博客-CSDN博客</a></li>
+<li>npm install卡顿问题记录：更换nodejs版本后不存在这个问题，比如：7.6.0&#x3D;&gt;8.8.0</li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/ouxx2009/article/details/122845141">(103条消息) Error: getaddrinfo ENOTFOUND yapi.demo.qunar.com yapi.demo.qunar.com:80 错误处理_ouxx2009的专栏-CSDN博客</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/mrzhangdulin/article/details/103816094">had too many unstable restarts (16). Stopped</a></li>
+</ul>
+<h3 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://www.runoob.com/mongodb/mongodb-linux-install.html">Linux 平台安装 MongoDB | 菜鸟教程 (runoob.com)</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.runoob.com/nodejs/nodejs-install-setup.html">Node.js 安装配置 | 菜鸟教程 (runoob.com)</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/xuaner8786/article/details/81630445">(103条消息) npm 安装指定版本（按版本安装）_雪梅零落-CSDN博客_npm指定版本安装</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/gbyukg/p/3326825.html">CURL常用命令 - 张贺 - 博客园 (cnblogs.com)</a></li>
+<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903604692713485">自动更新 Swagger 接口数据到 YApi 平台 - 掘金 (juejin.cn)</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://114.115.216.198/2022/03/16/Yapi%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/" data-id="cl4gh0zt50001lgli2hsx4ubn" data-title="Yapi安装教程" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/yapi/" rel="tag">yapi</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/06/14/k8s%E9%9B%86%E7%BE%A4%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85-1.18.0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          k8s集群环境安装-1.18.0
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/11/22/VirtualBox%E6%89%A9%E5%AE%B9%E6%95%99%E7%A8%8B/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">VirtualBox扩容教程</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/k8s/" rel="tag">k8s</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kafka/" rel="tag">kafka</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yapi/" rel="tag">yapi</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/k8s/" style="font-size: 10px;">k8s</a> <a href="/tags/kafka/" style="font-size: 10px;">kafka</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/yapi/" style="font-size: 20px;">yapi</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">六月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">三月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">十一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/10/">十月 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/06/15/kafka_2.11-2.1.0%E9%85%8D%E7%BD%AESASL:PLAIN%E8%AE%A4%E8%AF%81%E5%AE%9E%E8%B7%B5/">kafka_2.11-2.1.0配置SASL/PLAIN认证实践</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/15/k8s%E9%9B%86%E7%BE%A4%E5%8D%87%E7%BA%A7%E3%80%90v1.18.0%20-%20v1.19.16%E3%80%91/">k8s集群升级【v1.18.0 -&gt; v1.19.16】</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/14/k8s%E9%9B%86%E7%BE%A4nginx%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/">k8s集群nginx应用实例</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/14/k8s%E9%9B%86%E7%BE%A4%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85-1.18.0/">k8s集群环境安装-1.18.0</a>
+          </li>
+        
+          <li>
+            <a href="/2022/03/16/Yapi%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/">Yapi安装教程</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 zhukelili<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
