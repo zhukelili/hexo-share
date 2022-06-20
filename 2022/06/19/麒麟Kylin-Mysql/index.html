@@ -217,14 +217,43 @@
         </header>
 
         <div class="post-content">
-            <h2 id="安装包"><a href="#安装包" class="headerlink" title="安装包"></a>安装包</h2><p><a target="_blank" rel="noopener" href="https://downloads.mysql.com/archives/community/">MySQL :: Download MySQL Community Server (Archived Versions)</a></p>
-<h2 id="MYSQL"><a href="#MYSQL" class="headerlink" title="MYSQL"></a>MYSQL</h2><ul>
-<li><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/lzfhope/p/15547003.html">麒麟操作系统V10安装mysql8.0.26 - 正在战斗中 - 博客园 (cnblogs.com)</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/kanon_lgt/article/details/123810362">(131条消息) 国产麒麟系统KylinOS Server V10 SP2安装MySQL 8.0.28—RPM包安装_老哥讲数据库的博客-CSDN博客_银河麒麟系统安装mysql</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="http://www.virs.top/article/94">国产麒麟操作系统（aarch64）上安装MySQL 5.7+ (virs.top)</a></p>
-</li>
+            <h3 id="操作系统环境"><a href="#操作系统环境" class="headerlink" title="操作系统环境"></a>操作系统环境</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# hostnamectl</span><br><span class="line">   Static hostname: localhost.localdomain</span><br><span class="line">         Icon name: computer-server</span><br><span class="line">           Chassis: server</span><br><span class="line">        Machine ID: 134b4c074fd04c57861fa4da84******</span><br><span class="line">           Boot ID: d16519c3ed2049deb52dd54c5f******</span><br><span class="line">  Operating System: Kylin Linux Advanced Server V10 (Sword)</span><br><span class="line">            Kernel: Linux 4.19.90-24.4.v2101.ky10.x86_64</span><br><span class="line">      Architecture: x86-64</span><br></pre></td></tr></table></figure>
+
+<h3 id="采用RMP包安装"><a href="#采用RMP包安装" class="headerlink" title="采用RMP包安装"></a>采用RMP包安装</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mysql-community-client-8.0.25-1.el7.x86_64.rpm</span><br><span class="line">mysql-community-client-plugins-8.0.25-1.el7.x86_64.rpm</span><br><span class="line">mysql-community-common-8.0.25-1.el7.x86_64.rpm</span><br><span class="line">mysql-community-libs-8.0.25-1.el7.x86_64.rpm</span><br><span class="line">mysql-community-server-8.0.25-1.el7.x86_64.rpm</span><br></pre></td></tr></table></figure>
+
+<h3 id="建立软件链接"><a href="#建立软件链接" class="headerlink" title="建立软件链接"></a>建立软件链接</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 避免出现so文件缺失的问题，提前</span><br><span class="line">ln -sf /usr/lib64/libLLVM-7.so libLLVM-7.0.0.so</span><br></pre></td></tr></table></figure>
+
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><ul>
+<li>报错提示</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">错误：依赖检测失败：</span><br><span class="line">        libcrypto.so.10()(64bit) 被 mysql-community-client-8.0.25-1.el7.x86_64 需要</span><br><span class="line">        libcrypto.so.10(libcrypto.so.10)(64bit) 被 mysql-community-client-8.0.25-1.el7.x86_64 需要</span><br><span class="line">        libssl.so.10()(64bit) 被 mysql-community-client-8.0.25-1.el7.x86_64 需要</span><br><span class="line">        libssl.so.10(libssl.so.10)(64bit) 被 mysql-community-client-8.0.25-1.el7.x86_64 需要</span><br><span class="line">        libcrypto.so.10()(64bit) 被 mysql-community-client-plugins-8.0.25-1.el7.x86_64 需要</span><br><span class="line">        libssl.so.10()(64bit) 被 mysql-community-client-plugins-8.0.25-1.el7.x86_64 需要</span><br><span class="line">        libcrypto.so.10()(64bit) 被 mysql-community-libs-8.0.25-1.el7.x86_64 需要</span><br><span class="line">        libcrypto.so.10(libcrypto.so.10)(64bit) 被 mysql-community-libs-8.0.25-1.el7.x86_64 需要</span><br><span class="line">        libssl.so.10()(64bit) 被 mysql-community-libs-8.0.25-1.el7.x86_64 需要</span><br><span class="line">        libssl.so.10(libssl.so.10)(64bit) 被 mysql-community-libs-8.0.25-1.el7.x86_64 需要</span><br><span class="line">        libcrypto.so.10()(64bit) 被 mysql-community-server-8.0.25-1.el7.x86_64 需要</span><br><span class="line">        libcrypto.so.10(libcrypto.so.10)(64bit) 被 mysql-community-server-8.0.25-1.el7.x86_64 需要</span><br><span class="line">        libssl.so.10()(64bit) 被 mysql-community-server-8.0.25-1.el7.x86_64 需要</span><br><span class="line">        libssl.so.10(libssl.so.10)(64bit) 被 mysql-community-server-8.0.25-1.el7.x86_64 需要</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>解决办法</li>
+</ul>
+<p>下载依赖包：<a target="_blank" rel="noopener" href="https://vault.centos.org/centos/8/AppStream/x86_64/os/Packages/compat-openssl10-1.0.2o-3.el8.x86_64.rpm">compat-openssl10-1.0.2o-3.el8.x86_64.rpm</a></p>
+<p>上传到服务器后，执行如下命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -ivh compat-openssl10-1.0.2o-3.el8.x86_64.rpm</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>安装成功结果</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">● mysqld.service - MySQL Server</span><br><span class="line">   Loaded: loaded (/usr/lib/systemd/system/mysqld.service; enabled; vendor preset: disabled)</span><br><span class="line">   Active: active (running) since Mon 2022-06-20 13:54:22 CST; 5ms ago</span><br><span class="line">     Docs: man:mysqld(8)</span><br><span class="line">           http://dev.mysql.com/doc/refman/en/using-systemd.html</span><br><span class="line">  Process: 53026 ExecStartPre=/usr/bin/mysqld_pre_systemd (code=exited, status=0/SUCCESS)</span><br><span class="line"> Main PID: 53053 (mysqld)</span><br><span class="line">   Status: &quot;Server is operational&quot;</span><br><span class="line">    Tasks: 38</span><br><span class="line">   Memory: 366.6M</span><br><span class="line">   CGroup: /system.slice/mysqld.service</span><br><span class="line">           └─53053 /usr/sbin/mysqld</span><br></pre></td></tr></table></figure>
+
+<h2 id="辅助知识点"><a href="#辅助知识点" class="headerlink" title="辅助知识点"></a>辅助知识点</h2><blockquote>
+<p>到底什么是el、以及el6、el7、el8有什么区别呢？</p>
+<p>EL是Red Hat Enterprise Linux（EL）的缩写。</p>
+<p>EL5是Red Hat 5.x，CentOS 5.x<br>EL6是Red Hat 6.x，CentOS 6.x<br>EL7是Red Hat 7.x，CentOS 7.x<br>EL8是Red Hat 8.x，CentOS 8.x</p>
+<p>在centos8中有时可以使用el7的包，一般不推荐这样做。</p>
+<p>————————————————<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/hualinux/article/details/105915036">https://blog.csdn.net/hualinux/article/details/105915036</a></p>
+</blockquote>
+<h3 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/lzfhope/p/15547003.html">麒麟操作系统V10安装mysql8.0.26 - 正在战斗中 - 博客园 (cnblogs.com)</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/kanon_lgt/article/details/123810362">国产麒麟系统KylinOS Server V10 SP2安装MySQL 8.0.28—RPM包安装_老哥讲数据库的博客-CSDN博客_银河麒麟系统安装mysql</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.virs.top/article/94">国产麒麟操作系统（aarch64）上安装MySQL 5.7+ (virs.top)</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.codeleading.com/article/43171811622/">https://www.codeleading.com/article/43171811622/</a>)</li>
+<li><a target="_blank" rel="noopener" href="https://centos.pkgs.org/8/centos-appstream-x86_64/compat-openssl10-1.0.2o-3.el8.x86_64.rpm.html">compat-openssl10-1.0.2o-3.el8.x86_64.rpm CentOS 8 Download (pkgs.org)</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/dukay2021/article/details/120355458">安装MySQL缺失libssl.so.10(libssl.so.10)(64bit)_dukay0319的博客-CSDN博客_libssl.so.1.1安装</a></li>
 </ul>
 
         </div>
