@@ -6,7 +6,7 @@
   <link href="http://zhukelili.cn/atom.xml" rel="self"/>
   
   <link href="http://zhukelili.cn/"/>
-  <updated>2022-06-28T06:58:13.876Z</updated>
+  <updated>2022-06-28T07:07:56.160Z</updated>
   <id>http://zhukelili.cn/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://zhukelili.cn/2022/06/28/k8s-easy-kubectl/"/>
     <id>http://zhukelili.cn/2022/06/28/k8s-easy-kubectl/</id>
     <published>2022-06-28T06:34:59.000Z</published>
-    <updated>2022-06-28T06:58:13.876Z</updated>
+    <updated>2022-06-28T07:07:56.160Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>常用的k8s管理命令有太多的重复的前缀命令，实际操作时感觉有些浪费时间，效率不高</p><h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>使用shell脚本封装常用命令</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">apply-f.sh</span><br><span class="line">common/</span><br><span class="line">deployment-del.sh</span><br><span class="line">deployment-desc.sh</span><br><span class="line">deployment-pods.sh</span><br><span class="line">deployment-show.sh</span><br><span class="line">namespace-del.sh</span><br><span class="line">namespace-new.sh</span><br><span class="line">namespace-show.sh</span><br><span class="line">pod-desc.sh</span><br></pre></td></tr></table></figure><p>附件：/2022/06/28/k8s-easy-kubectl/k8s-easy-kubectl.zip</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>常用的k8s管理命令有太多的重复的前缀命令，实际操作时感觉有些浪费时间，效率不高</p><h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><ul><li>使用shell脚本封装常用命令</li></ul><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">apply-f.sh</span><br><span class="line">common/</span><br><span class="line">deployment-del.sh</span><br><span class="line">deployment-desc.sh</span><br><span class="line">deployment-pods.sh</span><br><span class="line">deployment-show.sh</span><br><span class="line">namespace-del.sh</span><br><span class="line">namespace-new.sh</span><br><span class="line">namespace-show.sh</span><br><span class="line">pod-desc.sh</span><br></pre></td></tr></table></figure><ul><li>已打包脚本下载地址：<a href="https://github.com/zhukelili/hexo-share/blob/gh-pages/2022/06/28/k8s-easy-kubectl/k8s-easy-kubectl.zip">k8s-easy-kubectl.zip</a></li></ul>]]></content>
     
     
       
