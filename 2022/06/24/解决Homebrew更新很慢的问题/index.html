@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="zhukelili">
+
+
+    <meta name="subtitle" content="有想法 有目标 有方法 有工作 有生活 有变化">
+
+
+
+
+<title>解决Homebrew更新很慢的问题 | zhukelili-blog</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 6.2.0"><link rel="alternate" href="/atom.xml" title="zhukelili-blog" type="application/atom+xml">
+</head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Zhukelili Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Zhukelili Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    var tocbot_timer;
+    var DEPTH_MAX = 6; // 为 6 时展开所有
+    var tocbot_default_config = {
+        tocSelector: '.tocbot-list',
+        contentSelector: '.post-content',
+        headingSelector: 'h1, h2, h3, h4, h5',
+        orderedList: false,
+        scrollSmooth: true,
+        onClick: extend_click,
+    };
+
+    function extend_click() {
+        clearTimeout(tocbot_timer);
+        tocbot_timer = setTimeout(function() {
+            tocbot.refresh(obj_merge(tocbot_default_config, {
+                hasInnerContainers: true
+            }));
+        }, 420); // 这个值是由 tocbot 源码里定义的 scrollSmoothDuration 得来的
+    }
+
+    document.ready(function() {
+        tocbot.init(obj_merge(tocbot_default_config, {
+            collapseDepth: 1
+        }));
+    });
+
+    function expand_toc() {
+        var b = document.querySelector('.tocbot-toc-expand');
+        var expanded = b.getAttribute('data-expanded');
+        expanded ? b.removeAttribute('data-expanded') : b.setAttribute('data-expanded', true);
+        tocbot.refresh(obj_merge(tocbot_default_config, {
+            collapseDepth: expanded ? 1 : DEPTH_MAX
+        }));
+        b.innerText = expanded ? 'Expand all' : 'Collapse all';
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function obj_merge(target, source) {
+        for (var item in source) {
+            if (source.hasOwnProperty(item)) {
+                target[item] = source[item];
+            }
+        }
+        return target;
+    }
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">解决Homebrew更新很慢的问题</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">zhukelili</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">六月 24, 2022&nbsp;&nbsp;15:30:59</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>最近在mac安装nodejs时，不能复用在linux准备的编译包（*.tar.xz），转而使用<code>brew install node</code>发现安装过程非常慢</p>
+<p>在执行如下命令时，发现终端更新文件速度也非常慢</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew update --preinstall</span><br></pre></td></tr></table></figure>
+
+<h3 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h3><p>在终端运行<code>brew config</code>命令，查看HOMEBREW_BOTTLE_DOMAIN地址，默认是没有的，需要手动追加国内的地址，国外的很慢</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">HOMEBREW_VERSION: 3.5.2-145-gfe853fc</span><br><span class="line">ORIGIN: https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git</span><br><span class="line">HEAD: fe853fcb9e57249d62e2381b831a884cfa853f37</span><br><span class="line">Last commit: 13 hours ago</span><br><span class="line">Core tap ORIGIN: https://github.com/Homebrew/homebrew-core</span><br><span class="line">Core tap HEAD: ee8a23537d7672bc9173a5ee5f74053fafa5c750</span><br><span class="line">Core tap last commit: 4 hours ago</span><br><span class="line">Core tap branch: master</span><br><span class="line">HOMEBREW_PREFIX: /usr/local</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">默认是没有配置的</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">HOMEBREW_BOTTLE_DOMAIN: https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles</span></span><br><span class="line">HOMEBREW_CASK_OPTS: []</span><br><span class="line">HOMEBREW_MAKE_JOBS: 8</span><br><span class="line">Homebrew Ruby: 2.6.8 =&gt; /System/Library/Frameworks/Ruby.framework/Versions/2.6/usr/bin/ruby</span><br><span class="line">CPU: octa-core 64-bit kabylake</span><br><span class="line">Clang: 13.0.0 build 1300</span><br><span class="line">Git: 2.32.0 =&gt; /Library/Developer/CommandLineTools/usr/bin/git</span><br><span class="line">Curl: 7.77.0 =&gt; /usr/bin/curl</span><br><span class="line">macOS: 12.0.1-x86_64</span><br><span class="line">CLT: 13.2.0.0.1.1638488800</span><br><span class="line">Xcode: N/A</span><br></pre></td></tr></table></figure>
+
+<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><p>镜像站：<a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/">清华大学开源软件镜像站</a></p>
+<img src="/2022/06/24/%E8%A7%A3%E5%86%B3Homebrew%E6%9B%B4%E6%96%B0%E5%BE%88%E6%85%A2%E7%9A%84%E9%97%AE%E9%A2%98/tsinghua-homebrew-bottles.png" class="">
+
+<p>添加HOMEBREW_BOTTLE_DOMAIN地址</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo &#x27;export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles&#x27; &gt;&gt; ~/.zshrc</span><br><span class="line">source ~/.zshrc</span><br></pre></td></tr></table></figure>
+
+<h3 id="结果验证"><a href="#结果验证" class="headerlink" title="结果验证"></a>结果验证</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">HOMEBREW_VERSION: 3.5.2-145-gfe853fc</span><br><span class="line">ORIGIN: https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git</span><br><span class="line">HEAD: fe853fcb9e57249d62e2381b831a884cfa853f37</span><br><span class="line">Last commit: 13 hours ago</span><br><span class="line">Core tap ORIGIN: https://github.com/Homebrew/homebrew-core</span><br><span class="line">Core tap HEAD: ee8a23537d7672bc9173a5ee5f74053fafa5c750</span><br><span class="line">Core tap last commit: 4 hours ago</span><br><span class="line">Core tap branch: master</span><br><span class="line">HOMEBREW_PREFIX: /usr/local</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">配置成功</span></span><br><span class="line">HOMEBREW_BOTTLE_DOMAIN: https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles</span><br><span class="line">HOMEBREW_CASK_OPTS: []</span><br><span class="line">HOMEBREW_MAKE_JOBS: 8</span><br><span class="line">Homebrew Ruby: 2.6.8 =&gt; /System/Library/Frameworks/Ruby.framework/Versions/2.6/usr/bin/ruby</span><br><span class="line">CPU: octa-core 64-bit kabylake</span><br><span class="line">Clang: 13.0.0 build 1300</span><br><span class="line">Git: 2.32.0 =&gt; /Library/Developer/CommandLineTools/usr/bin/git</span><br><span class="line">Curl: 7.77.0 =&gt; /usr/bin/curl</span><br><span class="line">macOS: 12.0.1-x86_64</span><br><span class="line">CLT: 13.2.0.0.1.1638488800</span><br><span class="line">Xcode: N/A</span><br></pre></td></tr></table></figure>
+
+<p>配置成功后，再执行<code>brew update</code>等命令后很快就有结果返回。</p>
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/help/homebrew/">homebrew | 镜像站使用帮助 | 清华大学开源软件镜像站 | Tsinghua Open Source Mirror</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/ITPower/p/15538780.html">17.mac安装homebrew及异常处理 - 盛开的太阳 - 博客园 (cnblogs.com)</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.runoob.com/nodejs/nodejs-install-setup.html">Node.js 安装配置 | 菜鸟教程 (runoob.com)</a></li>
+<li>[Homebrew安装指定版本的软件 - 简书 (jianshu.com)](</li>
+</ul>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>zhukelili</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="http://zhukelili.cn/2022/06/24/%E8%A7%A3%E5%86%B3Homebrew%E6%9B%B4%E6%96%B0%E5%BE%88%E6%85%A2%E7%9A%84%E9%97%AE%E9%A2%98/">http://zhukelili.cn/2022/06/24/%E8%A7%A3%E5%86%B3Homebrew%E6%9B%B4%E6%96%B0%E5%BE%88%E6%85%A2%E7%9A%84%E9%97%AE%E9%A2%98/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a target="_blank" rel="noopener" href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>Do you believe in <strong>DESTINY</strong>?</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/homebrew/"># homebrew</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2022/06/27/BTrace%E6%8F%92%E4%BB%B6%E4%BD%BF%E7%94%A8/">BTrace插件使用</a>
+            
+            
+            <a class="next" rel="next" href="/2022/06/23/BTrace%E7%AE%80%E6%98%8E%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/">BTrace简明使用手册</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© zhukelili | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+        <span><a href="https://beian.miit.gov.cn/" target="_blank"> 蜀ICP备2022016088号 </span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>

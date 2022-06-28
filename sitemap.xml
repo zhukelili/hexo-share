@@ -2,7 +2,88 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://114.115.216.198/2022/06/19/%E9%BA%92%E9%BA%9FKylin-Mysql/</loc>
+    <loc>http://zhukelili.cn/2022/06/28/k8s-easy-kubectl/</loc>
+    
+    <lastmod>2022-06-28</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://zhukelili.cn/2022/06/27/Helm%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/</loc>
+    
+    <lastmod>2022-06-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://zhukelili.cn/2022/06/27/BTrace%E6%8F%92%E4%BB%B6%E4%BD%BF%E7%94%A8/</loc>
+    
+    <lastmod>2022-06-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://zhukelili.cn/2022/06/23/jvisualvm%E5%AE%89%E8%A3%85btrace%E6%8F%92%E4%BB%B6/</loc>
+    
+    <lastmod>2022-06-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://zhukelili.cn/2022/06/24/%E8%A7%A3%E5%86%B3Homebrew%E6%9B%B4%E6%96%B0%E5%BE%88%E6%85%A2%E7%9A%84%E9%97%AE%E9%A2%98/</loc>
+    
+    <lastmod>2022-06-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://zhukelili.cn/2022/06/23/BTrace%E7%AE%80%E6%98%8E%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/</loc>
+    
+    <lastmod>2022-06-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://zhukelili.cn/2022/06/20/tag-lugins-test/</loc>
+    
+    <lastmod>2022-06-24</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://zhukelili.cn/2022/06/19/Kylin%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%B3%BB%E7%BB%9FV10%E7%BC%96%E8%AF%91guacamole%E5%87%BA%E9%94%99%E4%BB%A5%E5%8F%8A%E6%8E%92%E6%9F%A5%E8%BF%87%E7%A8%8B/</loc>
+    
+    <lastmod>2022-06-22</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://zhukelili.cn/2022/06/14/hexo%E5%AE%9E%E8%B7%B5%E8%BF%87%E7%A8%8B/</loc>
+    
+    <lastmod>2022-06-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://zhukelili.cn/2022/06/19/%E9%BA%92%E9%BA%9FKylin-Mysql/</loc>
     
     <lastmod>2022-06-20</lastmod>
     
@@ -11,7 +92,7 @@
   </url>
   
   <url>
-    <loc>http://114.115.216.198/2022/06/18/%E9%BA%92%E9%BA%9F%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%B3%BB%E7%BB%9FV10%E7%BC%96%E8%AF%91nginx%E5%87%BA%E9%94%99%E4%BB%A5%E5%8F%8A%E6%8E%92%E6%9F%A5%E8%BF%87%E7%A8%8B/</loc>
+    <loc>http://zhukelili.cn/2022/06/18/%E9%BA%92%E9%BA%9F%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%B3%BB%E7%BB%9FV10%E7%BC%96%E8%AF%91nginx%E5%87%BA%E9%94%99%E4%BB%A5%E5%8F%8A%E6%8E%92%E6%9F%A5%E8%BF%87%E7%A8%8B/</loc>
     
     <lastmod>2022-06-20</lastmod>
     
@@ -20,7 +101,7 @@
   </url>
   
   <url>
-    <loc>http://114.115.216.198/2022/06/19/Kylin%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%B3%BB%E7%BB%9FV10%E7%BC%96%E8%AF%91guacamole%E5%87%BA%E9%94%99%E4%BB%A5%E5%8F%8A%E6%8E%92%E6%9F%A5%E8%BF%87%E7%A8%8B/</loc>
+    <loc>http://zhukelili.cn/2022/06/19/%E9%BA%92%E9%BA%9FKylin-Openssl/</loc>
     
     <lastmod>2022-06-19</lastmod>
     
@@ -29,16 +110,7 @@
   </url>
   
   <url>
-    <loc>http://114.115.216.198/2022/06/19/%E9%BA%92%E9%BA%9FKylin-Openssl/</loc>
-    
-    <lastmod>2022-06-19</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://114.115.216.198/about/index.html</loc>
+    <loc>http://zhukelili.cn/about/index.html</loc>
     
     <lastmod>2022-06-17</lastmod>
     
@@ -47,7 +119,7 @@
   </url>
   
   <url>
-    <loc>http://114.115.216.198/category/index.html</loc>
+    <loc>http://zhukelili.cn/category/index.html</loc>
     
     <lastmod>2022-06-17</lastmod>
     
@@ -56,7 +128,7 @@
   </url>
   
   <url>
-    <loc>http://114.115.216.198/tag/index.html</loc>
+    <loc>http://zhukelili.cn/tag/index.html</loc>
     
     <lastmod>2022-06-17</lastmod>
     
@@ -65,16 +137,7 @@
   </url>
   
   <url>
-    <loc>http://114.115.216.198/2022/06/14/hexo%E5%AE%9E%E8%B7%B5%E8%BF%87%E7%A8%8B/</loc>
-    
-    <lastmod>2022-06-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://114.115.216.198/2021/11/22/VirtualBox%E6%89%A9%E5%AE%B9%E6%95%99%E7%A8%8B/</loc>
+    <loc>http://zhukelili.cn/2021/11/22/VirtualBox%E6%89%A9%E5%AE%B9%E6%95%99%E7%A8%8B/</loc>
     
     <lastmod>2022-06-16</lastmod>
     
@@ -83,7 +146,7 @@
   </url>
   
   <url>
-    <loc>http://114.115.216.198/2022/03/16/Yapi%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/</loc>
+    <loc>http://zhukelili.cn/2022/03/16/Yapi%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/</loc>
     
     <lastmod>2022-06-16</lastmod>
     
@@ -92,7 +155,7 @@
   </url>
   
   <url>
-    <loc>http://114.115.216.198/2021/10/19/%E4%BD%BF%E7%94%A8RMP%E6%A0%BC%E5%BC%8F%E6%96%87%E4%BB%B6%E5%B0%86MYSQL%E4%BB%8E5.7.27%E5%8D%87%E7%BA%A78.0.25/</loc>
+    <loc>http://zhukelili.cn/2021/10/19/%E4%BD%BF%E7%94%A8RMP%E6%A0%BC%E5%BC%8F%E6%96%87%E4%BB%B6%E5%B0%86MYSQL%E4%BB%8E5.7.27%E5%8D%87%E7%BA%A78.0.25/</loc>
     
     <lastmod>2022-06-16</lastmod>
     
@@ -101,7 +164,7 @@
   </url>
   
   <url>
-    <loc>http://114.115.216.198/2022/06/15/kafka_2.11-2.1.0%E9%85%8D%E7%BD%AESASL:PLAIN%E8%AE%A4%E8%AF%81%E5%AE%9E%E8%B7%B5/</loc>
+    <loc>http://zhukelili.cn/2022/06/15/kafka_2.11-2.1.0%E9%85%8D%E7%BD%AESASL%E4%B9%8BPLAIN%E8%AE%A4%E8%AF%81%E5%AE%9E%E8%B7%B5/</loc>
     
     <lastmod>2022-06-15</lastmod>
     
@@ -110,7 +173,7 @@
   </url>
   
   <url>
-    <loc>http://114.115.216.198/2022/06/15/k8s%E9%9B%86%E7%BE%A4%E5%8D%87%E7%BA%A7%E3%80%90v1.18.0%20-%20v1.19.16%E3%80%91/</loc>
+    <loc>http://zhukelili.cn/2022/06/15/k8s%E9%9B%86%E7%BE%A4%E5%8D%87%E7%BA%A7%E3%80%90v1.18.0%20-%20v1.19.16%E3%80%91/</loc>
     
     <lastmod>2022-06-15</lastmod>
     
@@ -119,7 +182,7 @@
   </url>
   
   <url>
-    <loc>http://114.115.216.198/2022/06/14/k8s%E9%9B%86%E7%BE%A4nginx%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/</loc>
+    <loc>http://zhukelili.cn/2022/06/14/k8s%E9%9B%86%E7%BE%A4nginx%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/</loc>
     
     <lastmod>2022-06-15</lastmod>
     
@@ -128,7 +191,7 @@
   </url>
   
   <url>
-    <loc>http://114.115.216.198/2022/06/14/k8s%E9%9B%86%E7%BE%A4%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85-1.18.0/</loc>
+    <loc>http://zhukelili.cn/2022/06/14/k8s%E9%9B%86%E7%BE%A4%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85-1.18.0/</loc>
     
     <lastmod>2022-06-15</lastmod>
     
@@ -138,58 +201,86 @@
   
 
   <url>
-    <loc>http://114.115.216.198/</loc>
-    <lastmod>2022-06-20</lastmod>
+    <loc>http://zhukelili.cn/</loc>
+    <lastmod>2022-06-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
   
   <url>
-    <loc>http://114.115.216.198/tags/kylin/</loc>
-    <lastmod>2022-06-20</lastmod>
+    <loc>http://zhukelili.cn/tags/jvm/</loc>
+    <lastmod>2022-06-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://114.115.216.198/tags/virtualbox/</loc>
-    <lastmod>2022-06-20</lastmod>
+    <loc>http://zhukelili.cn/tags/helm/</loc>
+    <lastmod>2022-06-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://114.115.216.198/tags/hexo/</loc>
-    <lastmod>2022-06-20</lastmod>
+    <loc>http://zhukelili.cn/tags/kylin/</loc>
+    <lastmod>2022-06-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://114.115.216.198/tags/yapi/</loc>
-    <lastmod>2022-06-20</lastmod>
+    <loc>http://zhukelili.cn/tags/virtualbox/</loc>
+    <lastmod>2022-06-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://114.115.216.198/tags/k8s/</loc>
-    <lastmod>2022-06-20</lastmod>
+    <loc>http://zhukelili.cn/tags/yapi/</loc>
+    <lastmod>2022-06-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://114.115.216.198/tags/kafka/</loc>
-    <lastmod>2022-06-20</lastmod>
+    <loc>http://zhukelili.cn/tags/hexo/</loc>
+    <lastmod>2022-06-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://114.115.216.198/tags/mysql/</loc>
-    <lastmod>2022-06-20</lastmod>
+    <loc>http://zhukelili.cn/tags/k8s/</loc>
+    <lastmod>2022-06-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://zhukelili.cn/tags/kafka/</loc>
+    <lastmod>2022-06-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://zhukelili.cn/tags/%E6%B5%8B%E8%AF%95/</loc>
+    <lastmod>2022-06-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://zhukelili.cn/tags/mysql/</loc>
+    <lastmod>2022-06-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://zhukelili.cn/tags/homebrew/</loc>
+    <lastmod>2022-06-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -197,8 +288,8 @@
 
   
   <url>
-    <loc>http://114.115.216.198/categories/%E6%8A%80%E6%9C%AF/</loc>
-    <lastmod>2022-06-20</lastmod>
+    <loc>http://zhukelili.cn/categories/%E6%8A%80%E6%9C%AF/</loc>
+    <lastmod>2022-06-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>

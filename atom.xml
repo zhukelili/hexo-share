@@ -3,11 +3,11 @@
   <title>zhukelili-blog</title>
   
   <subtitle>有想法 有目标 有方法 有工作 有生活 有变化</subtitle>
-  <link href="http://114.115.216.198/atom.xml" rel="self"/>
+  <link href="http://zhukelili.cn/atom.xml" rel="self"/>
   
-  <link href="http://114.115.216.198/"/>
-  <updated>2022-06-19T14:57:30.042Z</updated>
-  <id>http://114.115.216.198/</id>
+  <link href="http://zhukelili.cn/"/>
+  <updated>2022-06-28T06:58:13.876Z</updated>
+  <id>http://zhukelili.cn/</id>
   
   <author>
     <name>zhukelili</name>
@@ -17,9 +17,175 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>k8s-easy-kubectl</title>
+    <link href="http://zhukelili.cn/2022/06/28/k8s-easy-kubectl/"/>
+    <id>http://zhukelili.cn/2022/06/28/k8s-easy-kubectl/</id>
+    <published>2022-06-28T06:34:59.000Z</published>
+    <updated>2022-06-28T06:58:13.876Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>常用的k8s管理命令有太多的重复的前缀命令，实际操作时感觉有些浪费时间，效率不高</p><h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>使用shell脚本封装常用命令</p><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">apply-f.sh</span><br><span class="line">common/</span><br><span class="line">deployment-del.sh</span><br><span class="line">deployment-desc.sh</span><br><span class="line">deployment-pods.sh</span><br><span class="line">deployment-show.sh</span><br><span class="line">namespace-del.sh</span><br><span class="line">namespace-new.sh</span><br><span class="line">namespace-show.sh</span><br><span class="line">pod-desc.sh</span><br></pre></td></tr></table></figure><p>附件：/2022/06/28/k8s-easy-kubectl/k8s-easy-kubectl.zip</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;p&gt;常用的k8s管理命令有太多的重复的前缀命令，实际操作时感觉有些浪费时间，效率不高&lt;/p&gt;
+&lt;h2 id=&quot;解决办法&quot;&gt;&lt;a href=&quot;#解</summary>
+      
+    
+    
+    
+    
+    <category term="k8s" scheme="http://zhukelili.cn/tags/k8s/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Helm安装使用</title>
+    <link href="http://zhukelili.cn/2022/06/27/Helm%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/"/>
+    <id>http://zhukelili.cn/2022/06/27/Helm%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/</id>
+    <published>2022-06-27T07:56:46.000Z</published>
+    <updated>2022-06-27T07:57:15.132Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget https://get.helm.sh/helm-v3.8.0-linux-amd64.tar.gz</span><br><span class="line">tar -zxvf helm-v3.8.0-linux-amd64.tar.gz</span><br><span class="line">mv linux-amd64/helm /usr/local/bin/helm</span><br><span class="line">helm help</span><br></pre></td></tr></table></figure><h3 id="Helm-国内镜像源加速下载"><a href="#Helm-国内镜像源加速下载" class="headerlink" title="Helm 国内镜像源加速下载"></a>Helm 国内镜像源加速下载</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">helm repo add aliyun https://kubernetes.oss-cn-hangzhou.aliyuncs.com/charts </span><br><span class="line"></span><br><span class="line">helm repo update</span><br><span class="line"></span><br><span class="line">#helm repo add huaweicloud https://mirrors.huaweicloud.com/helm/ 不能添加</span><br><span class="line"></span><br></pre></td></tr></table></figure><h3 id="Mysql"><a href="#Mysql" class="headerlink" title="Mysql"></a>Mysql</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Prerequisites</span><br><span class="line">Kubernetes 1.19+</span><br><span class="line">Helm 3.2.0+</span><br><span class="line">PV provisioner support in the underlying infrastructure</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">helm install my-release \</span><br><span class="line">  --set auth.rootPassword=secretpassword,auth.database=app_database \</span><br><span class="line">    bitnami/mysql</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">helm install my-release -f values.yaml bitnami/mysql</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;下载&quot;&gt;&lt;a href=&quot;#下载&quot; class=&quot;headerlink&quot; title=&quot;下载&quot;&gt;&lt;/a&gt;下载&lt;/h3&gt;&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;s</summary>
+      
+    
+    
+    
+    
+    <category term="helm" scheme="http://zhukelili.cn/tags/helm/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>BTrace插件使用</title>
+    <link href="http://zhukelili.cn/2022/06/27/BTrace%E6%8F%92%E4%BB%B6%E4%BD%BF%E7%94%A8/"/>
+    <id>http://zhukelili.cn/2022/06/27/BTrace%E6%8F%92%E4%BB%B6%E4%BD%BF%E7%94%A8/</id>
+    <published>2022-06-27T06:35:14.000Z</published>
+    <updated>2022-06-27T06:38:56.859Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="http://zhukelili.cn/2022/06/23/jvisualvm%E5%AE%89%E8%A3%85btrace%E6%8F%92%E4%BB%B6/">jvisualvm安装btrace插件</a></p><h3 id="使用条件"><a href="#使用条件" class="headerlink" title="使用条件"></a>使用条件</h3><blockquote><p>BTrace脚本默认只能本地运行，也就是只能调试本地的Java进程。如果需要在本地调试远程的Java进程的话，是需要自己去修改BTrace源码的<br>BTrace脚本在生产环境下可以使用，但是被修改的字节码不会被还原。所以我们需要先在本地调试好BTrace脚本，然后才能放到生产环境下使用。并且需要注意BTrace脚本中不能含有影响性能或消耗资源较多的代码，不然会导致线上的服务性能降低。</p></blockquote><img src="/2022/06/27/BTrace%E6%8F%92%E4%BB%B6%E4%BD%BF%E7%94%A8/Snipaste_2022-06-27_14-32-36.png" class=""><img src="/2022/06/27/BTrace%E6%8F%92%E4%BB%B6%E4%BD%BF%E7%94%A8/Snipaste_2022-06-27_14-33-42.png" class=""><h3 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* BTrace Script Template */</span></span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> com.sun.btrace.BTraceUtils.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.alibaba.fastjson.JSONObject;</span><br><span class="line"><span class="keyword">import</span> com.sun.btrace.annotations.*;</span><br><span class="line"></span><br><span class="line"><span class="meta">@BTrace(unsafe = true)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TracingScript</span> &#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@OnMethod(</span></span><br><span class="line"><span class="meta">    clazz = &quot;cn.zhukelili.demo.service.impl.UserServiceImpl&quot;,</span></span><br><span class="line"><span class="meta">    method = &quot;queryUser&quot;,</span></span><br><span class="line"><span class="meta">    location = @Location(value = Kind.RETURN)</span></span><br><span class="line"><span class="meta">  )</span></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">print</span><span class="params">(</span></span><br><span class="line"><span class="params">    <span class="meta">@ProbeClassName</span> String pcn,</span></span><br><span class="line"><span class="params">    <span class="meta">@ProbeMethodName</span> String pmn,</span></span><br><span class="line"><span class="params">    <span class="meta">@Duration</span> <span class="type">long</span> time,</span></span><br><span class="line"><span class="params">    <span class="meta">@Return</span> Object obj</span></span><br><span class="line"><span class="params">  )</span> &#123;</span><br><span class="line">    println(Strings.strcat(<span class="string">&quot;class name &quot;</span>, pcn));</span><br><span class="line">    println(Strings.strcat(<span class="string">&quot;method name &quot;</span>, pmn));</span><br><span class="line">    println(Strings.strcat(<span class="string">&quot;time used: &quot;</span>, str(time)));</span><br><span class="line">    println(Strings.strcat(<span class="string">&quot;return c=: &quot;</span>, JSONObject.toJSONString(obj)));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="BTrace简明使用手册"><a href="#BTrace简明使用手册" class="headerlink" title="BTrace简明使用手册"></a>BTrace简明使用手册</h3><ul><li><a href="https://nos.netease.com/knowledge/4dae0a7d-c093-46db-8ef8-ad1e2232ea85?download=BTrace%E7%AE%80%E6%98%8E%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C.pdf">BTrace简明使用手册</a></li></ul><h2 id="jvisualvm远程连接jvm"><a href="#jvisualvm远程连接jvm" class="headerlink" title="jvisualvm远程连接jvm"></a>jvisualvm远程连接jvm</h2><p><strong>特别注意</strong>：btrace用的到java启动参数必须加在启动命令的<strong>最前面</strong>，否则不生效。导致结果就是程序可以正常启动，但是指定连接到btrace的端口号没有被任务进程所占用，导致jvsualvm连接失败。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">8099会被启用</span></span><br><span class="line">java \</span><br><span class="line">-Djava.rmi.server.hostname=192.168.56.105 \</span><br><span class="line">-Dcom.sun.management.jmxremote=true \</span><br><span class="line">-Dcom.sun.management.jmxremote.port=8099 \</span><br><span class="line">-Dcom.sun.management.jmxremote.ssl=false \</span><br><span class="line">-Dcom.sun.management.jmxremote.authenticate=false \</span><br><span class="line">-jar /opt/jars/my-tool-1.0/my-tool-1.0.jar --spring.profiles.active=dev</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">8099不会被启用</span></span><br><span class="line">java \</span><br><span class="line">-jar /opt/jars/my-tool-1.0/my-tool-1.0.jar --spring.profiles.active=dev \</span><br><span class="line">-Djava.rmi.server.hostname=192.168.56.105 \</span><br><span class="line">-Dcom.sun.management.jmxremote=true \</span><br><span class="line">-Dcom.sun.management.jmxremote.port=8099 \</span><br><span class="line">-Dcom.sun.management.jmxremote.ssl=false \</span><br><span class="line">-Dcom.sun.management.jmxremote.authenticate=false \</span><br></pre></td></tr></table></figure><ul><li><a href="https://blog.csdn.net/u013627669/article/details/84917816">(132条消息) hostname -i 返回的不是本机地址解决方案_军哥精神的博客-CSDN博客</a></li><li><a href="https://blog.csdn.net/qq_27641935/article/details/102919542">(132条消息) VisualVM远程连接失败踩坑之JMX最全配置_CleverApe的博客-CSDN博客</a></li><li><a href="https://www.cnblogs.com/scofield-1987/p/7620496.html">JConsole&#x2F;JvisualVM 远程连接失败处理 - 从精于一开始 - 博客园 (cnblogs.com)</a></li></ul><h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><ul><li><a href="https://blog.51cto.com/zero01/2143096">基于Btrace的监控调试_端碗吹水的技术博客_51CTO博客</a></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;&lt;a href=&quot;http://zhukelili.cn/2022/06/23/jvisualvm%E5%AE%89%E8%A3%85btrace%E6%8F%92%E4%BB%B6/&quot;&gt;jvisualvm安装btrace插件&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;使用条件&quot;&gt;&lt;</summary>
+      
+    
+    
+    
+    
+    <category term="jvm" scheme="http://zhukelili.cn/tags/jvm/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>解决Homebrew更新很慢的问题</title>
+    <link href="http://zhukelili.cn/2022/06/24/%E8%A7%A3%E5%86%B3Homebrew%E6%9B%B4%E6%96%B0%E5%BE%88%E6%85%A2%E7%9A%84%E9%97%AE%E9%A2%98/"/>
+    <id>http://zhukelili.cn/2022/06/24/%E8%A7%A3%E5%86%B3Homebrew%E6%9B%B4%E6%96%B0%E5%BE%88%E6%85%A2%E7%9A%84%E9%97%AE%E9%A2%98/</id>
+    <published>2022-06-24T07:30:59.000Z</published>
+    <updated>2022-06-24T07:57:46.376Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>最近在mac安装nodejs时，不能复用在linux准备的编译包（*.tar.xz），转而使用<code>brew install node</code>发现安装过程非常慢</p><p>在执行如下命令时，发现终端更新文件速度也非常慢</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew update --preinstall</span><br></pre></td></tr></table></figure><h3 id="原因分析"><a href="#原因分析" class="headerlink" title="原因分析"></a>原因分析</h3><p>在终端运行<code>brew config</code>命令，查看HOMEBREW_BOTTLE_DOMAIN地址，默认是没有的，需要手动追加国内的地址，国外的很慢</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">HOMEBREW_VERSION: 3.5.2-145-gfe853fc</span><br><span class="line">ORIGIN: https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git</span><br><span class="line">HEAD: fe853fcb9e57249d62e2381b831a884cfa853f37</span><br><span class="line">Last commit: 13 hours ago</span><br><span class="line">Core tap ORIGIN: https://github.com/Homebrew/homebrew-core</span><br><span class="line">Core tap HEAD: ee8a23537d7672bc9173a5ee5f74053fafa5c750</span><br><span class="line">Core tap last commit: 4 hours ago</span><br><span class="line">Core tap branch: master</span><br><span class="line">HOMEBREW_PREFIX: /usr/local</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">默认是没有配置的</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">HOMEBREW_BOTTLE_DOMAIN: https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles</span></span><br><span class="line">HOMEBREW_CASK_OPTS: []</span><br><span class="line">HOMEBREW_MAKE_JOBS: 8</span><br><span class="line">Homebrew Ruby: 2.6.8 =&gt; /System/Library/Frameworks/Ruby.framework/Versions/2.6/usr/bin/ruby</span><br><span class="line">CPU: octa-core 64-bit kabylake</span><br><span class="line">Clang: 13.0.0 build 1300</span><br><span class="line">Git: 2.32.0 =&gt; /Library/Developer/CommandLineTools/usr/bin/git</span><br><span class="line">Curl: 7.77.0 =&gt; /usr/bin/curl</span><br><span class="line">macOS: 12.0.1-x86_64</span><br><span class="line">CLT: 13.2.0.0.1.1638488800</span><br><span class="line">Xcode: N/A</span><br></pre></td></tr></table></figure><h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><p>镜像站：<a href="https://mirrors.tuna.tsinghua.edu.cn/">清华大学开源软件镜像站</a></p><img src="/2022/06/24/%E8%A7%A3%E5%86%B3Homebrew%E6%9B%B4%E6%96%B0%E5%BE%88%E6%85%A2%E7%9A%84%E9%97%AE%E9%A2%98/tsinghua-homebrew-bottles.png" class=""><p>添加HOMEBREW_BOTTLE_DOMAIN地址</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo &#x27;export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles&#x27; &gt;&gt; ~/.zshrc</span><br><span class="line">source ~/.zshrc</span><br></pre></td></tr></table></figure><h3 id="结果验证"><a href="#结果验证" class="headerlink" title="结果验证"></a>结果验证</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">HOMEBREW_VERSION: 3.5.2-145-gfe853fc</span><br><span class="line">ORIGIN: https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git</span><br><span class="line">HEAD: fe853fcb9e57249d62e2381b831a884cfa853f37</span><br><span class="line">Last commit: 13 hours ago</span><br><span class="line">Core tap ORIGIN: https://github.com/Homebrew/homebrew-core</span><br><span class="line">Core tap HEAD: ee8a23537d7672bc9173a5ee5f74053fafa5c750</span><br><span class="line">Core tap last commit: 4 hours ago</span><br><span class="line">Core tap branch: master</span><br><span class="line">HOMEBREW_PREFIX: /usr/local</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">配置成功</span></span><br><span class="line">HOMEBREW_BOTTLE_DOMAIN: https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles</span><br><span class="line">HOMEBREW_CASK_OPTS: []</span><br><span class="line">HOMEBREW_MAKE_JOBS: 8</span><br><span class="line">Homebrew Ruby: 2.6.8 =&gt; /System/Library/Frameworks/Ruby.framework/Versions/2.6/usr/bin/ruby</span><br><span class="line">CPU: octa-core 64-bit kabylake</span><br><span class="line">Clang: 13.0.0 build 1300</span><br><span class="line">Git: 2.32.0 =&gt; /Library/Developer/CommandLineTools/usr/bin/git</span><br><span class="line">Curl: 7.77.0 =&gt; /usr/bin/curl</span><br><span class="line">macOS: 12.0.1-x86_64</span><br><span class="line">CLT: 13.2.0.0.1.1638488800</span><br><span class="line">Xcode: N/A</span><br></pre></td></tr></table></figure><p>配置成功后，再执行<code>brew update</code>等命令后很快就有结果返回。</p><h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><ul><li><a href="https://mirrors.tuna.tsinghua.edu.cn/help/homebrew/">homebrew | 镜像站使用帮助 | 清华大学开源软件镜像站 | Tsinghua Open Source Mirror</a></li><li><a href="https://www.cnblogs.com/ITPower/p/15538780.html">17.mac安装homebrew及异常处理 - 盛开的太阳 - 博客园 (cnblogs.com)</a></li><li><a href="https://www.runoob.com/nodejs/nodejs-install-setup.html">Node.js 安装配置 | 菜鸟教程 (runoob.com)</a></li><li>[Homebrew安装指定版本的软件 - 简书 (jianshu.com)](</li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;问题描述&quot;&gt;&lt;a href=&quot;#问题描述&quot; class=&quot;headerlink&quot; title=&quot;问题描述&quot;&gt;&lt;/a&gt;问题描述&lt;/h3&gt;&lt;p&gt;最近在mac安装nodejs时，不能复用在linux准备的编译包（*.tar.xz），转而使用&lt;code&gt;brew inst</summary>
+      
+    
+    
+    
+    
+    <category term="homebrew" scheme="http://zhukelili.cn/tags/homebrew/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>BTrace简明使用手册</title>
+    <link href="http://zhukelili.cn/2022/06/23/BTrace%E7%AE%80%E6%98%8E%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/"/>
+    <id>http://zhukelili.cn/2022/06/23/BTrace%E7%AE%80%E6%98%8E%E4%BD%BF%E7%94%A8%E6%89%8B%E5%86%8C/</id>
+    <published>2022-06-23T09:03:37.000Z</published>
+    <updated>2022-06-24T07:53:31.619Z</updated>
+    
+    <content type="html"><![CDATA[<div class="row">    <embed src="Trace-doc.pdf" width="100%" height="550" type="application/pdf"></div><h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><ul><li><a href="https://cloud.tencent.com/developer/article/1917945">Hexo竟然可以展示PDF</a></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">
+
+	&lt;div class=&quot;row&quot;&gt;
+    &lt;embed src=&quot;Trace-doc.pdf&quot; width=&quot;100%&quot; height=&quot;550&quot; type=&quot;application/pdf&quot;&gt;
+	&lt;/div&gt;
+
+
+
+
+&lt;h2 id=&quot;参考文档&quot;&gt;&lt;a href=&quot;#参考</summary>
+      
+    
+    
+    
+    
+    <category term="jvm" scheme="http://zhukelili.cn/tags/jvm/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>jvisualvm安装btrace插件</title>
+    <link href="http://zhukelili.cn/2022/06/23/jvisualvm%E5%AE%89%E8%A3%85btrace%E6%8F%92%E4%BB%B6/"/>
+    <id>http://zhukelili.cn/2022/06/23/jvisualvm%E5%AE%89%E8%A3%85btrace%E6%8F%92%E4%BB%B6/</id>
+    <published>2022-06-23T02:23:22.000Z</published>
+    <updated>2022-06-24T09:16:09.245Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="JDK版本"><a href="#JDK版本" class="headerlink" title="JDK版本"></a>JDK版本</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ java -version</span><br><span class="line">java version &quot;1.8.0_191&quot;</span><br><span class="line">Java(TM) SE Runtime Environment (build 1.8.0_191-b12)</span><br><span class="line">Java HotSpot(TM) 64-Bit Server VM (build 25.191-b12, mixed mode)</span><br></pre></td></tr></table></figure><h3 id="插件地址"><a href="#插件地址" class="headerlink" title="插件地址"></a>插件地址</h3><p><a href="https://visualvm.github.io/pluginscenters.html">VisualVM: Plugins Centers</a></p><p><a href="https://visualvm.github.io/uc/8u131/updates.html">Update Center documentation (visualvm.github.io)</a></p><h3 id="开始安装"><a href="#开始安装" class="headerlink" title="开始安装"></a>开始安装</h3><ul><li>根据jdk版本，在插件中心页面，进入对应的插件页面</li></ul><img src="/2022/06/23/jvisualvm%E5%AE%89%E8%A3%85btrace%E6%8F%92%E4%BB%B6/Snipaste_2022-06-23_10-18-44.png" class=""><ul><li>安装 <a href="https://github.com/visualvm/visualvm.src/releases/download/1.3.9/net-java-btrace-visualvm.nbm">BTrace Workbench</a>，然后根据提示，下载依赖包，</li></ul><img src="/2022/06/23/jvisualvm%E5%AE%89%E8%A3%85btrace%E6%8F%92%E4%BB%B6/Snipaste_2022-06-23_10-06-55.png" class=""><ul><li>最后重启jvisualvm，选择运行的虚拟机，右键点击【Trace application】按钮</li></ul><img src="/2022/06/23/jvisualvm%E5%AE%89%E8%A3%85btrace%E6%8F%92%E4%BB%B6/Snipaste_2022-06-23_10-06-08.png" class=""># 参考文档<ul><li><a href="https://blog.csdn.net/liuxiao723846/article/details/80170554">(131条消息) jvisualvm 安装btrace插件_赶路人儿的博客-CSDN博客_jvisualvm 插件</a></li><li><a href="https://visualvm.github.io/uc/8u131/updates.html">Update Center documentation (visualvm.github.io)</a></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;JDK版本&quot;&gt;&lt;a href=&quot;#JDK版本&quot; class=&quot;headerlink&quot; title=&quot;JDK版本&quot;&gt;&lt;/a&gt;JDK版本&lt;/h3&gt;&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gut</summary>
+      
+    
+    
+    
+    
+    <category term="jvm" scheme="http://zhukelili.cn/tags/jvm/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>tag-lugins-test</title>
+    <link href="http://zhukelili.cn/2022/06/20/tag-lugins-test/"/>
+    <id>http://zhukelili.cn/2022/06/20/tag-lugins-test/</id>
+    <published>2022-06-20T14:40:37.000Z</published>
+    <updated>2022-06-24T07:44:32.643Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="视频"><a href="#视频" class="headerlink" title="视频"></a>视频</h2><ul><li><div class="video-container"><iframe src="https://www.youtube.com/embed/https://www.youtube.com/watch?v=RjDVeceJSoA&list=RDRjDVeceJSoA&start_radio=1" frameborder="0" loading="lazy" allowfullscreen></iframe></div></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;视频&quot;&gt;&lt;a href=&quot;#视频&quot; class=&quot;headerlink&quot; title=&quot;视频&quot;&gt;&lt;/a&gt;视频&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;div class=&quot;video-container&quot;&gt;&lt;iframe src=&quot;https://www.youtube.co</summary>
+      
+    
+    
+    
+    
+    <category term="测试" scheme="http://zhukelili.cn/tags/%E6%B5%8B%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
     <title>麒麟Kylin-Openssl</title>
-    <link href="http://114.115.216.198/2022/06/19/%E9%BA%92%E9%BA%9FKylin-Openssl/"/>
-    <id>http://114.115.216.198/2022/06/19/%E9%BA%92%E9%BA%9FKylin-Openssl/</id>
+    <link href="http://zhukelili.cn/2022/06/19/%E9%BA%92%E9%BA%9FKylin-Openssl/"/>
+    <id>http://zhukelili.cn/2022/06/19/%E9%BA%92%E9%BA%9FKylin-Openssl/</id>
     <published>2022-06-19T08:13:24.000Z</published>
     <updated>2022-06-19T14:57:30.042Z</updated>
     
@@ -35,14 +201,14 @@
     
     
     
-    <category term="kylin" scheme="http://114.115.216.198/tags/kylin/"/>
+    <category term="kylin" scheme="http://zhukelili.cn/tags/kylin/"/>
     
   </entry>
   
   <entry>
     <title>麒麟Kylin-Mysql</title>
-    <link href="http://114.115.216.198/2022/06/19/%E9%BA%92%E9%BA%9FKylin-Mysql/"/>
-    <id>http://114.115.216.198/2022/06/19/%E9%BA%92%E9%BA%9FKylin-Mysql/</id>
+    <link href="http://zhukelili.cn/2022/06/19/%E9%BA%92%E9%BA%9FKylin-Mysql/"/>
+    <id>http://zhukelili.cn/2022/06/19/%E9%BA%92%E9%BA%9FKylin-Mysql/</id>
     <published>2022-06-19T08:11:32.000Z</published>
     <updated>2022-06-20T10:11:41.860Z</updated>
     
@@ -57,18 +223,18 @@
     
     
     
-    <category term="kylin" scheme="http://114.115.216.198/tags/kylin/"/>
+    <category term="kylin" scheme="http://zhukelili.cn/tags/kylin/"/>
     
   </entry>
   
   <entry>
     <title>Kylin服务器系统V10编译guacamole出错以及排查过程</title>
-    <link href="http://114.115.216.198/2022/06/19/Kylin%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%B3%BB%E7%BB%9FV10%E7%BC%96%E8%AF%91guacamole%E5%87%BA%E9%94%99%E4%BB%A5%E5%8F%8A%E6%8E%92%E6%9F%A5%E8%BF%87%E7%A8%8B/"/>
-    <id>http://114.115.216.198/2022/06/19/Kylin%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%B3%BB%E7%BB%9FV10%E7%BC%96%E8%AF%91guacamole%E5%87%BA%E9%94%99%E4%BB%A5%E5%8F%8A%E6%8E%92%E6%9F%A5%E8%BF%87%E7%A8%8B/</id>
+    <link href="http://zhukelili.cn/2022/06/19/Kylin%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%B3%BB%E7%BB%9FV10%E7%BC%96%E8%AF%91guacamole%E5%87%BA%E9%94%99%E4%BB%A5%E5%8F%8A%E6%8E%92%E6%9F%A5%E8%BF%87%E7%A8%8B/"/>
+    <id>http://zhukelili.cn/2022/06/19/Kylin%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%B3%BB%E7%BB%9FV10%E7%BC%96%E8%AF%91guacamole%E5%87%BA%E9%94%99%E4%BB%A5%E5%8F%8A%E6%8E%92%E6%9F%A5%E8%BF%87%E7%A8%8B/</id>
     <published>2022-06-19T08:05:39.000Z</published>
-    <updated>2022-06-19T15:19:50.862Z</updated>
+    <updated>2022-06-22T02:53:38.628Z</updated>
     
-    <content type="html"><![CDATA[<h3 id="操作系统环境"><a href="#操作系统环境" class="headerlink" title="操作系统环境"></a>操作系统环境</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# hostnamectl</span><br><span class="line">   Static hostname: localhost.localdomain</span><br><span class="line">         Icon name: computer-server</span><br><span class="line">           Chassis: server</span><br><span class="line">        Machine ID: 134b4c074fd04c57861fa4da84******</span><br><span class="line">           Boot ID: d16519c3ed2049deb52dd54c5f******</span><br><span class="line">  Operating System: Kylin Linux Advanced Server V10 (Sword)</span><br><span class="line">            Kernel: Linux 4.19.90-24.4.v2101.ky10.x86_64</span><br><span class="line">      Architecture: x86-64</span><br></pre></td></tr></table></figure><h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><ul><li>报错提示</li></ul><blockquote><p> configure:error:library ‘ossp-uuid‘ or ‘uuid‘ is required for OSSP UUID</p></blockquote><blockquote><p> error: “libjpeg is required for writing jpeg messages”</p></blockquote><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">yum install -y uuid.x86_64</span><br><span class="line">yum install -y uuid-devel.x86_64</span><br><span class="line"></span><br><span class="line">rpm -ivh freerdp-2.0.0-46.ky10.x86_64.rpm</span><br><span class="line">rpm -ivh libjpeg-turbo-devel-2.0.5-1.ky10.x86_64.rpm</span><br><span class="line">rpm -ivh libnsl2-1.3.0-1.ky10.x86_64.rpm</span><br><span class="line">rpm -ivh libuuid-2.35.2-2.p02.ky10.x86_64.rpm</span><br></pre></td></tr></table></figure><h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><ul><li><p><a href="https://github.com/jumpserver/jumpserver/issues/2787">The OSSP UUID library is required · Issue #2787 · jumpserver&#x2F;jumpserver (github.com)</a></p><p>注意：需要是麒麟系统的rpm包</p></li><li><p><a href="https://blog.51cto.com/watchmen/1934660">Linux-rpm命令-查看已安装软件包信息及未安装rpm包信息_清风揽月的技术博客_51CTO博客</a></p><p>查询一个已安装软件包的信息<code>rpm -qi 软件名</code> 查看软件包所包含的目录和文件<code>rpm -qpl rpm包</code></p></li><li><p><a href="https://blog.csdn.net/qq_17576885/article/details/121416767">java环境，jdk_8u191_x64(jdk1.8)各系统安装包直链下载</a></p></li></ul>]]></content>
+    <content type="html"><![CDATA[<h3 id="操作系统环境"><a href="#操作系统环境" class="headerlink" title="操作系统环境"></a>操作系统环境</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]# hostnamectl</span><br><span class="line">   Static hostname: localhost.localdomain</span><br><span class="line">         Icon name: computer-server</span><br><span class="line">           Chassis: server</span><br><span class="line">        Machine ID: 134b4c074fd04c57861fa4da84******</span><br><span class="line">           Boot ID: d16519c3ed2049deb52dd54c5f******</span><br><span class="line">  Operating System: Kylin Linux Advanced Server V10 (Sword)</span><br><span class="line">            Kernel: Linux 4.19.90-24.4.v2101.ky10.x86_64</span><br><span class="line">      Architecture: x86-64</span><br></pre></td></tr></table></figure><h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><ul><li>报错提示</li></ul><blockquote><p> configure:error:library ‘ossp-uuid‘ or ‘uuid‘ is required for OSSP UUID</p></blockquote><blockquote><p> error: “libjpeg is required for writing jpeg messages”</p></blockquote><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">rpm -Uvh --force --nodeps freerdp-2.0.0-46.ky10.x86_64.rpm</span><br><span class="line">rpm -Uvh --force --nodeps libjpeg-turbo-devel-2.0.5-1.ky10.x86_64.rpm</span><br><span class="line">rpm -Uvh --force --nodeps libnsl2-1.3.0-1.ky10.x86_64.rpm</span><br><span class="line">rpm -Uvh --force --nodeps libuuid-2.35.2-2.p02.ky10.x86_64.rpm</span><br><span class="line">rpm -Uvh --force --nodeps uuid-1.6.2-44.ky10.x86_64.rpm</span><br><span class="line">rpm -Uvh --force --nodeps uuid-devel-1.6.2-44.ky10.x86_64.rpm</span><br><span class="line">rpm -Uvh --force --nodeps uuid-help-1.6.2-44.ky10.x86_64.rpm</span><br></pre></td></tr></table></figure><h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><ul><li><p><a href="https://github.com/jumpserver/jumpserver/issues/2787">The OSSP UUID library is required · Issue #2787 · jumpserver&#x2F;jumpserver (github.com)</a></p><p>注意：需要是麒麟系统的rpm包</p></li><li><p><a href="https://blog.51cto.com/watchmen/1934660">Linux-rpm命令-查看已安装软件包信息及未安装rpm包信息_清风揽月的技术博客_51CTO博客</a></p><p>查询一个已安装软件包的信息<code>rpm -qi 软件名</code> 查看软件包所包含的目录和文件<code>rpm -qpl rpm包</code></p></li><li><p><a href="https://blog.csdn.net/qq_17576885/article/details/121416767">java环境，jdk_8u191_x64(jdk1.8)各系统安装包直链下载</a></p></li></ul>]]></content>
     
     
       
@@ -79,14 +245,14 @@
     
     
     
-    <category term="kylin" scheme="http://114.115.216.198/tags/kylin/"/>
+    <category term="kylin" scheme="http://zhukelili.cn/tags/kylin/"/>
     
   </entry>
   
   <entry>
     <title>麒麟服务器系统V10编译nginx出错以及排查过程</title>
-    <link href="http://114.115.216.198/2022/06/18/%E9%BA%92%E9%BA%9F%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%B3%BB%E7%BB%9FV10%E7%BC%96%E8%AF%91nginx%E5%87%BA%E9%94%99%E4%BB%A5%E5%8F%8A%E6%8E%92%E6%9F%A5%E8%BF%87%E7%A8%8B/"/>
-    <id>http://114.115.216.198/2022/06/18/%E9%BA%92%E9%BA%9F%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%B3%BB%E7%BB%9FV10%E7%BC%96%E8%AF%91nginx%E5%87%BA%E9%94%99%E4%BB%A5%E5%8F%8A%E6%8E%92%E6%9F%A5%E8%BF%87%E7%A8%8B/</id>
+    <link href="http://zhukelili.cn/2022/06/18/%E9%BA%92%E9%BA%9F%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%B3%BB%E7%BB%9FV10%E7%BC%96%E8%AF%91nginx%E5%87%BA%E9%94%99%E4%BB%A5%E5%8F%8A%E6%8E%92%E6%9F%A5%E8%BF%87%E7%A8%8B/"/>
+    <id>http://zhukelili.cn/2022/06/18/%E9%BA%92%E9%BA%9F%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%B3%BB%E7%BB%9FV10%E7%BC%96%E8%AF%91nginx%E5%87%BA%E9%94%99%E4%BB%A5%E5%8F%8A%E6%8E%92%E6%9F%A5%E8%BF%87%E7%A8%8B/</id>
     <published>2022-06-18T06:00:46.000Z</published>
     <updated>2022-06-20T10:08:41.649Z</updated>
     
@@ -101,14 +267,14 @@
     
     
     
-    <category term="kylin" scheme="http://114.115.216.198/tags/kylin/"/>
+    <category term="kylin" scheme="http://zhukelili.cn/tags/kylin/"/>
     
   </entry>
   
   <entry>
     <title>kafka_2.11-2.1.0配置SASL/PLAIN认证实践</title>
-    <link href="http://114.115.216.198/2022/06/15/kafka_2.11-2.1.0%E9%85%8D%E7%BD%AESASL:PLAIN%E8%AE%A4%E8%AF%81%E5%AE%9E%E8%B7%B5/"/>
-    <id>http://114.115.216.198/2022/06/15/kafka_2.11-2.1.0%E9%85%8D%E7%BD%AESASL:PLAIN%E8%AE%A4%E8%AF%81%E5%AE%9E%E8%B7%B5/</id>
+    <link href="http://zhukelili.cn/2022/06/15/kafka_2.11-2.1.0%E9%85%8D%E7%BD%AESASL%E4%B9%8BPLAIN%E8%AE%A4%E8%AF%81%E5%AE%9E%E8%B7%B5/"/>
+    <id>http://zhukelili.cn/2022/06/15/kafka_2.11-2.1.0%E9%85%8D%E7%BD%AESASL%E4%B9%8BPLAIN%E8%AE%A4%E8%AF%81%E5%AE%9E%E8%B7%B5/</id>
     <published>2022-06-15T13:32:00.000Z</published>
     <updated>2022-06-15T13:37:43.144Z</updated>
     
@@ -127,14 +293,14 @@
     
     
     
-    <category term="kafka" scheme="http://114.115.216.198/tags/kafka/"/>
+    <category term="kafka" scheme="http://zhukelili.cn/tags/kafka/"/>
     
   </entry>
   
   <entry>
     <title>k8s集群升级【v1.18.0 -&gt; v1.19.16】</title>
-    <link href="http://114.115.216.198/2022/06/15/k8s%E9%9B%86%E7%BE%A4%E5%8D%87%E7%BA%A7%E3%80%90v1.18.0%20-%20v1.19.16%E3%80%91/"/>
-    <id>http://114.115.216.198/2022/06/15/k8s%E9%9B%86%E7%BE%A4%E5%8D%87%E7%BA%A7%E3%80%90v1.18.0%20-%20v1.19.16%E3%80%91/</id>
+    <link href="http://zhukelili.cn/2022/06/15/k8s%E9%9B%86%E7%BE%A4%E5%8D%87%E7%BA%A7%E3%80%90v1.18.0%20-%20v1.19.16%E3%80%91/"/>
+    <id>http://zhukelili.cn/2022/06/15/k8s%E9%9B%86%E7%BE%A4%E5%8D%87%E7%BA%A7%E3%80%90v1.18.0%20-%20v1.19.16%E3%80%91/</id>
     <published>2022-06-15T13:00:00.000Z</published>
     <updated>2022-06-15T13:28:08.988Z</updated>
     
@@ -149,14 +315,14 @@
     
     
     
-    <category term="k8s" scheme="http://114.115.216.198/tags/k8s/"/>
+    <category term="k8s" scheme="http://zhukelili.cn/tags/k8s/"/>
     
   </entry>
   
   <entry>
     <title>k8s集群nginx应用实例</title>
-    <link href="http://114.115.216.198/2022/06/14/k8s%E9%9B%86%E7%BE%A4nginx%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/"/>
-    <id>http://114.115.216.198/2022/06/14/k8s%E9%9B%86%E7%BE%A4nginx%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/</id>
+    <link href="http://zhukelili.cn/2022/06/14/k8s%E9%9B%86%E7%BE%A4nginx%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/"/>
+    <id>http://zhukelili.cn/2022/06/14/k8s%E9%9B%86%E7%BE%A4nginx%E5%BA%94%E7%94%A8%E5%AE%9E%E4%BE%8B/</id>
     <published>2022-06-14T15:00:12.000Z</published>
     <updated>2022-06-15T13:24:54.383Z</updated>
     
@@ -175,8 +341,8 @@
   
   <entry>
     <title>k8s集群环境安装-1.18.0</title>
-    <link href="http://114.115.216.198/2022/06/14/k8s%E9%9B%86%E7%BE%A4%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85-1.18.0/"/>
-    <id>http://114.115.216.198/2022/06/14/k8s%E9%9B%86%E7%BE%A4%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85-1.18.0/</id>
+    <link href="http://zhukelili.cn/2022/06/14/k8s%E9%9B%86%E7%BE%A4%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85-1.18.0/"/>
+    <id>http://zhukelili.cn/2022/06/14/k8s%E9%9B%86%E7%BE%A4%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85-1.18.0/</id>
     <published>2022-06-14T14:26:04.000Z</published>
     <updated>2022-06-15T03:27:14.957Z</updated>
     
@@ -195,33 +361,32 @@
   
   <entry>
     <title>hexo实践过程</title>
-    <link href="http://114.115.216.198/2022/06/14/hexo%E5%AE%9E%E8%B7%B5%E8%BF%87%E7%A8%8B/"/>
-    <id>http://114.115.216.198/2022/06/14/hexo%E5%AE%9E%E8%B7%B5%E8%BF%87%E7%A8%8B/</id>
+    <link href="http://zhukelili.cn/2022/06/14/hexo%E5%AE%9E%E8%B7%B5%E8%BF%87%E7%A8%8B/"/>
+    <id>http://zhukelili.cn/2022/06/14/hexo%E5%AE%9E%E8%B7%B5%E8%BF%87%E7%A8%8B/</id>
     <published>2022-06-14T01:00:00.000Z</published>
-    <updated>2022-06-17T05:14:19.364Z</updated>
+    <updated>2022-06-21T14:06:05.193Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="部署操作"><a href="#部署操作" class="headerlink" title="部署操作"></a>部署操作</h2><ul><li><a href="https://www.jianshu.com/p/ec4e678f6cef">Hexo 更换主题 - 简书 (jianshu.com)</a></li></ul><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><ul><li><p><a href="https://www.learnfk.com/code-examples/javascript/upgrade-your-dependencies-to-the-actual-version-of-core-js.html">Javascript - 将您的依赖项升级到 core-js 的实际版本</a>，多次执行，直到不提示包含<strong>deprecated</strong>的内容</p></li><li><p><a href="https://fuhailin.github.io/Hexo-SEO/">Hexo搭建博客进阶之SEO搜索引擎优化 | 赵大寳 (fuhailin.github.io)</a></p></li><li><p><a href="https://blog.csdn.net/qq_35364594/article/details/121594004">(124条消息) hexo d上传报错鉴权失败_人做事的博客-CSDN博客</a>，<a href="https://blog.csdn.net/weixin_41010198/article/details/119698015">(124条消息) github开发人员在七夕搞事情：remote: Support for password authentication was removed on August 13, 2021._点亮～黑夜的博客-CSDN博客</a></p></li></ul>]]></content>
+    <content type="html"><![CDATA[<h2 id="搭建hexo运行环境"><a href="#搭建hexo运行环境" class="headerlink" title="搭建hexo运行环境"></a>搭建hexo运行环境</h2><p>进入一个空的目录，创建一键安装<strong>hexo-go.sh</strong>脚本</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">wget https://nodejs.org/dist/v16.15.1/node-v16.15.1-linux-x64.tar.xz</span><br><span class="line">tar xf node-v16.15.1-linux-x64.tar.xz</span><br><span class="line">cd node-v16.15.1-linux-x64/ </span><br><span class="line">nodejs_path=$(pwd)</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">覆盖软链接</span></span><br><span class="line">ln -sf $&#123;nodejs_path&#125;/bin/npm   /usr/local/bin/ </span><br><span class="line">ln -sf $&#123;nodejs_path&#125;/bin/node   /usr/local/bin/</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">npm源</span></span><br><span class="line">npm config set registry https://registry.npm.taobao.org</span><br><span class="line">npm config get registry</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">安装npm</span></span><br><span class="line">npm install --location=global nrm</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">覆盖软链接</span></span><br><span class="line">ln -sf $&#123;nodejs_path&#125;/bin/nrm   /usr/local/bin/</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">打印镜像源</span></span><br><span class="line"> nrm ls</span><br><span class="line"><span class="meta prompt_"> </span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">hexo</span></span><br><span class="line">npm install -g hexo-cli</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">覆盖软链接</span></span><br><span class="line">ln -sf $&#123;nodejs_path&#125;/bin/hexo   /usr/local/bin/</span><br></pre></td></tr></table></figure><ul><li><a href="https://www.jianshu.com/p/ec4e678f6cef">Hexo 更换主题 - 简书 (jianshu.com)</a></li></ul><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><ul><li><a href="https://www.learnfk.com/code-examples/javascript/upgrade-your-dependencies-to-the-actual-version-of-core-js.html">Javascript - 将您的依赖项升级到 core-js 的实际版本</a>，多次执行，直到不提示包含<strong>deprecated</strong>的内容</li><li><a href="https://fuhailin.github.io/Hexo-SEO/">Hexo搭建博客进阶之SEO搜索引擎优化 | 赵大寳 (fuhailin.github.io)</a></li><li><a href="https://blog.csdn.net/qq_35364594/article/details/121594004">(124条消息) hexo d上传报错鉴权失败_人做事的博客-CSDN博客</a>，<a href="https://blog.csdn.net/weixin_41010198/article/details/119698015">(124条消息) github开发人员在七夕搞事情：remote: Support for password authentication was removed on August 13, 2021._点亮～黑夜的博客-CSDN博客</a></li></ul><h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><ul><li><a href="https://www.cnblogs.com/steven-yang/p/12317646.html">设置npm源的几种方式 - SNYang - 博客园 (cnblogs.com)</a></li><li><a href="https://www.jianshu.com/p/f311a3a155ff">npm换源 - 简书 (jianshu.com)</a></li></ul>]]></content>
     
     
       
       
-    <summary type="html">&lt;h2 id=&quot;部署操作&quot;&gt;&lt;a href=&quot;#部署操作&quot; class=&quot;headerlink&quot; title=&quot;部署操作&quot;&gt;&lt;/a&gt;部署操作&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://www.jianshu.com/p/ec4e678f6cef&quot;&gt;Hexo 更换</summary>
+    <summary type="html">&lt;h2 id=&quot;搭建hexo运行环境&quot;&gt;&lt;a href=&quot;#搭建hexo运行环境&quot; class=&quot;headerlink&quot; title=&quot;搭建hexo运行环境&quot;&gt;&lt;/a&gt;搭建hexo运行环境&lt;/h2&gt;&lt;p&gt;进入一个空的目录，创建一键安装&lt;strong&gt;hexo-go.sh&lt;/str</summary>
       
     
     
     
-    <category term="技术" scheme="http://114.115.216.198/categories/%E6%8A%80%E6%9C%AF/"/>
+    <category term="技术" scheme="http://zhukelili.cn/categories/%E6%8A%80%E6%9C%AF/"/>
     
     
-    <category term="hexo" scheme="http://114.115.216.198/tags/hexo/"/>
+    <category term="hexo" scheme="http://zhukelili.cn/tags/hexo/"/>
     
   </entry>
   
   <entry>
     <title>Yapi安装教程</title>
-    <link href="http://114.115.216.198/2022/03/16/Yapi%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/"/>
-    <id>http://114.115.216.198/2022/03/16/Yapi%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/</id>
+    <link href="http://zhukelili.cn/2022/03/16/Yapi%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/"/>
+    <id>http://zhukelili.cn/2022/03/16/Yapi%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/</id>
     <published>2022-03-16T01:57:00.000Z</published>
     <updated>2022-06-16T01:25:55.127Z</updated>
     
@@ -236,14 +401,14 @@
     
     
     
-    <category term="yapi" scheme="http://114.115.216.198/tags/yapi/"/>
+    <category term="yapi" scheme="http://zhukelili.cn/tags/yapi/"/>
     
   </entry>
   
   <entry>
     <title>VirtualBox扩容教程</title>
-    <link href="http://114.115.216.198/2021/11/22/VirtualBox%E6%89%A9%E5%AE%B9%E6%95%99%E7%A8%8B/"/>
-    <id>http://114.115.216.198/2021/11/22/VirtualBox%E6%89%A9%E5%AE%B9%E6%95%99%E7%A8%8B/</id>
+    <link href="http://zhukelili.cn/2021/11/22/VirtualBox%E6%89%A9%E5%AE%B9%E6%95%99%E7%A8%8B/"/>
+    <id>http://zhukelili.cn/2021/11/22/VirtualBox%E6%89%A9%E5%AE%B9%E6%95%99%E7%A8%8B/</id>
     <published>2021-11-22T06:56:00.000Z</published>
     <updated>2022-06-16T05:37:01.806Z</updated>
     
@@ -260,14 +425,14 @@
     
     
     
-    <category term="virtualbox" scheme="http://114.115.216.198/tags/virtualbox/"/>
+    <category term="virtualbox" scheme="http://zhukelili.cn/tags/virtualbox/"/>
     
   </entry>
   
   <entry>
     <title>使用RMP格式文件将MYSQL从5.7.27升级8.0.25</title>
-    <link href="http://114.115.216.198/2021/10/19/%E4%BD%BF%E7%94%A8RMP%E6%A0%BC%E5%BC%8F%E6%96%87%E4%BB%B6%E5%B0%86MYSQL%E4%BB%8E5.7.27%E5%8D%87%E7%BA%A78.0.25/"/>
-    <id>http://114.115.216.198/2021/10/19/%E4%BD%BF%E7%94%A8RMP%E6%A0%BC%E5%BC%8F%E6%96%87%E4%BB%B6%E5%B0%86MYSQL%E4%BB%8E5.7.27%E5%8D%87%E7%BA%A78.0.25/</id>
+    <link href="http://zhukelili.cn/2021/10/19/%E4%BD%BF%E7%94%A8RMP%E6%A0%BC%E5%BC%8F%E6%96%87%E4%BB%B6%E5%B0%86MYSQL%E4%BB%8E5.7.27%E5%8D%87%E7%BA%A78.0.25/"/>
+    <id>http://zhukelili.cn/2021/10/19/%E4%BD%BF%E7%94%A8RMP%E6%A0%BC%E5%BC%8F%E6%96%87%E4%BB%B6%E5%B0%86MYSQL%E4%BB%8E5.7.27%E5%8D%87%E7%BA%A78.0.25/</id>
     <published>2021-10-19T04:00:00.000Z</published>
     <updated>2022-06-16T01:25:55.127Z</updated>
     
@@ -282,7 +447,7 @@
     
     
     
-    <category term="mysql" scheme="http://114.115.216.198/tags/mysql/"/>
+    <category term="mysql" scheme="http://zhukelili.cn/tags/mysql/"/>
     
   </entry>
   

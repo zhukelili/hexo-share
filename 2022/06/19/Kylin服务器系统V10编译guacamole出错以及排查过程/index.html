@@ -228,7 +228,7 @@
 <blockquote>
 <p> error: “libjpeg is required for writing jpeg messages”</p>
 </blockquote>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">yum install -y uuid.x86_64</span><br><span class="line">yum install -y uuid-devel.x86_64</span><br><span class="line"></span><br><span class="line">rpm -ivh freerdp-2.0.0-46.ky10.x86_64.rpm</span><br><span class="line">rpm -ivh libjpeg-turbo-devel-2.0.5-1.ky10.x86_64.rpm</span><br><span class="line">rpm -ivh libnsl2-1.3.0-1.ky10.x86_64.rpm</span><br><span class="line">rpm -ivh libuuid-2.35.2-2.p02.ky10.x86_64.rpm</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">rpm -Uvh --force --nodeps freerdp-2.0.0-46.ky10.x86_64.rpm</span><br><span class="line">rpm -Uvh --force --nodeps libjpeg-turbo-devel-2.0.5-1.ky10.x86_64.rpm</span><br><span class="line">rpm -Uvh --force --nodeps libnsl2-1.3.0-1.ky10.x86_64.rpm</span><br><span class="line">rpm -Uvh --force --nodeps libuuid-2.35.2-2.p02.ky10.x86_64.rpm</span><br><span class="line">rpm -Uvh --force --nodeps uuid-1.6.2-44.ky10.x86_64.rpm</span><br><span class="line">rpm -Uvh --force --nodeps uuid-devel-1.6.2-44.ky10.x86_64.rpm</span><br><span class="line">rpm -Uvh --force --nodeps uuid-help-1.6.2-44.ky10.x86_64.rpm</span><br></pre></td></tr></table></figure>
 
 <h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><ul>
 <li><p><a target="_blank" rel="noopener" href="https://github.com/jumpserver/jumpserver/issues/2787">The OSSP UUID library is required · Issue #2787 · jumpserver&#x2F;jumpserver (github.com)</a></p>
@@ -254,7 +254,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="http://114.115.216.198/2022/06/19/Kylin%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%B3%BB%E7%BB%9FV10%E7%BC%96%E8%AF%91guacamole%E5%87%BA%E9%94%99%E4%BB%A5%E5%8F%8A%E6%8E%92%E6%9F%A5%E8%BF%87%E7%A8%8B/">http://114.115.216.198/2022/06/19/Kylin%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%B3%BB%E7%BB%9FV10%E7%BC%96%E8%AF%91guacamole%E5%87%BA%E9%94%99%E4%BB%A5%E5%8F%8A%E6%8E%92%E6%9F%A5%E8%BF%87%E7%A8%8B/</a></span>
+                        <span><a href="http://zhukelili.cn/2022/06/19/Kylin%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%B3%BB%E7%BB%9FV10%E7%BC%96%E8%AF%91guacamole%E5%87%BA%E9%94%99%E4%BB%A5%E5%8F%8A%E6%8E%92%E6%9F%A5%E8%BF%87%E7%A8%8B/">http://zhukelili.cn/2022/06/19/Kylin%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%B3%BB%E7%BB%9FV10%E7%BC%96%E8%AF%91guacamole%E5%87%BA%E9%94%99%E4%BB%A5%E5%8F%8A%E6%8E%92%E6%9F%A5%E8%BF%87%E7%A8%8B/</a></span>
                     </p>
                 
                 
@@ -306,6 +306,7 @@
             <footer id="footer" class="footer">
     <div class="copyright">
         <span>© zhukelili | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+        <span><a href="https://beian.miit.gov.cn/" target="_blank"> 蜀ICP备2022016088号 </span>
     </div>
 </footer>
 
